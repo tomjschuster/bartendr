@@ -1,7 +1,7 @@
 {
-  "name": "__BONES_NEEDS_A_NAME__",
+  "name": "bartendr",
   "version": "0.0.1",
-  "description": "A happy little skeleton.",
+  "description": "lots of alcohol",
   "main": "index.js",
   "scripts": {
     "test": "mocha app/**/*.test.js db/**/*.test.js server/**/*.test.js",

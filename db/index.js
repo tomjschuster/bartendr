@@ -13,7 +13,7 @@ console.log(chalk.yellow(`Opening database connection to ${url}`));
 
 // create the database instance
 const db = module.exports = new Sequelize(url, {
-  logging: debug, // export DEBUG=sql in the environment to get SQL queries 
+  logging: debug, // export DEBUG=sql in the environment to get SQL queries
   native: true,   // lets Sequelize know we can use pg-native for ~30% more speed
   define: {
     underscored: true,       // use snake_case rather than camelCase column names
@@ -27,7 +27,7 @@ require('./models')
 
 // sync the db, creating it if necessary
 function sync(force=app.isTesting) {
-  return db.sync({force})
+  return db.sync({force: true})
     .then(ok => console.log(`Synced models to db ${url}`))
     .catch(fail => {
       if (app.isProduction) {
