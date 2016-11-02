@@ -9,11 +9,17 @@ export default class App extends Component {
   }
 
   render() {
-    return(
-      <div>
-        <Navbar />
-        {this.props.children}
-      </div>
-    );
-  }
+   return(
+     <div className="row">
+       <Navbar />
+       <div className="col s0 m1 l1"></div>
+
+       <div className="col s12 m10 l10">
+         {this.props.children}
+       </div>
+
+       <div className="col s0 m1 l1"></div>
+     </div>
+   );
+ }
 }

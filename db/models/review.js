@@ -20,7 +20,7 @@ const Review = db.define('review', {
   }
 
 }, {
-  // nake a hook to set the date.
+  // make a hook to set the date.
 
   // indexes: [{fields: ['email'], unique: true,}],
   // hooks: {
