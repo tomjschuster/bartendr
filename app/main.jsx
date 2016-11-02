@@ -3,7 +3,8 @@ import React from 'react'
 import {render} from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory, Route, IndexRoute, IndexRedirect } from 'react-router'
-import App from "./containers/app"
+import App from "./components/app";
+import Products from "./components/products"
 import Login from './components/Login.jsx'
 import Root from './components/Root'
 
@@ -20,9 +21,9 @@ import store from './store'
 
 render (
   <Provider store={store}>
-  <Router history={browserHistory}>
-      <Route path="/" component={Root}>
-        <Route path="/products" component={Root} />
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <Route path="/products" component={Products} />
         <Route path="/products/:productId" component={Root} />
         <Route path="/orderHistory" component={Root} />
         <Route path="/orderHistory/:orderId" component={Root} />
