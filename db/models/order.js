@@ -4,7 +4,18 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Order = db.define('order', {
-
+  status: {
+    type: Sequelize.ENUM("created", "processing", "cancelled", "completed")
+  },
+  ship_date: {
+    type: Sequelize.DATE
+  },
+  ship_name: {
+    type: Sequelize.STRING
+  },
+  ship_address: {
+    type: Sequelize.TEXT
+  }
 }, {
   // indexes: [{fields: ['email'], unique: true,}],
   // hooks: {

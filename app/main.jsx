@@ -1,15 +1,16 @@
-'use strict'
-import React from 'react'
-import {render} from 'react-dom'
-import { Provider } from 'react-redux'
-import { Router, browserHistory, Route, IndexRoute, IndexRedirect } from 'react-router'
+'use strict';
+import React from 'react';
+import {render} from 'react-dom';
+import { Provider } from 'react-redux';
+import { Router, browserHistory, Route, IndexRoute, IndexRedirect } from 'react-router';
 import App from "./components/app";
-import Products from "./components/products"
-import Login from './components/Login.jsx'
-import Root from './components/Root'
-import Home from './components/home'
+import Products from "./components/products";
+import Login from './components/Login.jsx';
+import Root from './components/Root';
+import Home from './components/home';
+import SingleOrder from "./containers/singleOrder";
 
-import store from './store'
+import store from './store';
 
 // BONES UPDATE: ADDED Login.jsx
 // render (
@@ -28,7 +29,7 @@ render (
         <Route path="/products/:productId" component={Root} />
         <Route path="/orderHistory" component={Root} />
         <Route path="/orderHistory/:orderId" component={Root} />
-        <Route path="/cart" component={Root} />
+        <Route path="/cart" component={SingleOrder} />
         <Route path="/signup" component={Root} />
         <Route path="/login" component={Login} />
         <Route path="/checkout" component={Root} />
