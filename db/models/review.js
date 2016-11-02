@@ -4,8 +4,24 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Review = db.define('review', {
+  stars: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      min: 1, max: 5
+    }
+  },
+
+  content: {
+    type: Sequelize.TEXT,
+    validate: {
+      len: [0, 500]
+    }
+  }
 
 }, {
+  // nake a hook to set the date.
+
   // indexes: [{fields: ['email'], unique: true,}],
   // hooks: {
   //   beforeCreate: setEmailAndPassword,
