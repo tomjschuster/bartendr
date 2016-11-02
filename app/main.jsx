@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory, Route, IndexRoute, IndexRedirect } from 'react-router'
 import App from "./components/app";
 import Products from "./components/products"
+import SingleProduct from "./components/singleProduct"
 import Login from './components/Login.jsx'
 import Root from './components/Root'
 import Home from './components/home'
@@ -25,7 +26,7 @@ render (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="/products" component={Products} />
-        <Route path="/products/:productId" component={Root} />
+        <Route path="/products/:productId" component={SingleProduct} />
         <Route path="/orderHistory" component={Root} />
         <Route path="/orderHistory/:orderId" component={Root} />
         <Route path="/cart" component={Root} />

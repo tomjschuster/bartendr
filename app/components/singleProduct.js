@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FilterBar from './filterBar';
 
 export default class SingleProduct extends Component {
   constructor(props) {
@@ -7,7 +8,9 @@ export default class SingleProduct extends Component {
 
   render() {
     return(
-
+      <div>
+      <FilterBar/>
+      </div>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class ProductItem extends Component {
   constructor(props) {
@@ -6,19 +7,19 @@ export default class ProductItem extends Component {
   }
 
   render() {
-
+    let { id, name, photoUrl, price } = this.props.product;
     return(
 
 
           <div className="card">
             <div className="card-image">
-              <img src={this.props.product.photoUrl}/>
+              <Link to={`/products/${id}`}><img src={photoUrl}/></Link>
               <span className="card-title"></span>
             </div>
             <div className="card-content">
               <ul>
-                <li>{this.props.product.name}</li>
-                <li>{this.props.product.price}</li>
+                <li>{name}</li>
+                <li>{price}</li>
                 <li>
                   <div className="stars">
                     <i className="tiny material-icons">grade</i>
@@ -31,7 +32,6 @@ export default class ProductItem extends Component {
               </ul>
             </div>
             <div className="card-action">
-
                <a className="waves-effect waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
             </div>
           </div>

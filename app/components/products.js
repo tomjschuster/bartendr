@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Sidebar from './sidebar';
+import FilterBar from './filterBar';
 import ProductItem from './productItem';
 
 //export default
