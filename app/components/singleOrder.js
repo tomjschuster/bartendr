@@ -10,7 +10,17 @@ export default class SingleOrder extends Component {
     super(props);
   }
 
+  total() {
+    var output = 0;
+    for (var i = 0; i < this.props.cart.length; i++) {
+      output += this.props.cart[i].price;
+    }
+    return output;
+
+  }
+
   render() {
+
 
     console.log("this.props", this.props);
     console.log("this.props.cart", this.props.cart);
@@ -28,7 +38,7 @@ export default class SingleOrder extends Component {
              </tr>
            </thead>
           {
-            this.props.cart.length ? <h2>yo</h2> :
+            this.props.cart.length ? <h2></h2> :
                 <h2>Buy something.</h2>
           }
 
@@ -48,6 +58,27 @@ export default class SingleOrder extends Component {
                 )
                 )
              }
+             <tr>
+              <td></td>
+              <td>TOTAL</td>
+              <td></td>
+              <td>
+                {
+
+                  (function (props) {
+                    var output = 0;
+                      for (var i = 0; i < props.cart.length; i++) {
+                        output += props.cart[i].price * props.cart[i].quantity;
+                      }
+                      return Math.round(output*100)/100;
+                    }
+
+                  )(this.props)
+                }
+
+
+              </td>
+             </tr>
            </tbody>
          </table>
        </div>

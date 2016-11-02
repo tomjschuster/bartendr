@@ -29,26 +29,26 @@ const hardCodedData = [
 
 const initialState =
 [
-  // {productId: 1,
-  //   name: "Grey Goose",
-  //   quantity: 2,
-  //   price: 29.99
-  // },
-  // {productId: 2,
-  //   name: "Jose Cuervo",
-  //   quantity: 1,
-  //   price: 9.99
-  // },
-  // {productId: 3,
-  //   name: "McCallan 41",
-  //   quantity: 1,
-  //   price: 399.99
-  // },
-  // {productId: 4,
-  //   name: "Moet Chandon",
-  //   quantity: 1,
-  //   price: 59.99
-  // }
+  {productId: 1,
+    name: "Grey Goose",
+    quantity: 2,
+    price: 29.99
+  },
+  {productId: 2,
+    name: "Jose Cuervo",
+    quantity: 1,
+    price: 9.99
+  },
+  {productId: 3,
+    name: "McCallan 41",
+    quantity: 1,
+    price: 399.99
+  },
+  {productId: 4,
+    name: "Moet Chandon",
+    quantity: 1,
+    price: 59.99
+  }
 ];
 
 /*----------  ACTION TYPES  ----------*/
