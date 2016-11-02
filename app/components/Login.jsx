@@ -20,5 +20,5 @@ export default connect (
     login(username, password) {
       return dispatch(login(username, password))
     }
-  }),
-) (Login)
+  })
+)(Login)
