@@ -50,7 +50,7 @@ export default class SingleOrder extends Component {
                    <td>Pic</td>
                    <td>{item.name}</td>
                    <td>
-                     <input type="number" name="quantity" min="1" max="99" value={item.quantity}  width="50" height="50"/>
+                     <input type="number" name="quantity" min="1" max="99" defaultValue={item.quantity}  width="50" height="50"/>
                    </td>
                    <td>{item.price}</td>
                  </tr>
