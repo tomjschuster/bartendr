@@ -7,6 +7,7 @@ import App from "./components/app";
 import Products from "./components/products"
 import Login from './components/Login.jsx'
 import Root from './components/Root'
+import Home from './components/home'
 
 import store from './store'
 
@@ -31,6 +32,7 @@ render (
         <Route path="/signup" component={Root} />
         <Route path="/login" component={Login} />
         <Route path="/checkout" component={Root} />
+        <IndexRoute component={Home} />
       </Route>
     </Router>
   </Provider>,
