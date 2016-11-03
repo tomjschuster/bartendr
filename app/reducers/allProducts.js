@@ -1,20 +1,23 @@
+import axios from 'axios';
 /*----------  INITIAL STATE  ----------*/
-const initialState =
-{
-
-};
+const initialState = [];
 
 /*----------  ACTION TYPES  ----------*/
-const RECEIVE_STATION_STATUS = 'RECEIVE_STATION_STATUS';
+const RECEIVE_ALL_PRODUCTS = 'RECEIVE_ALL_PRODUCTS';
 
 /*----------  ACTION CREATORS  ----------*/
-export const receiveStationStatus = stations => ({
-  type: RECEIVE_STATION_STATUS,
-  stations
+export const receiveAllProducts = products => ({
+  type: RECEIVE_ALL_PRODUCTS,
+  products
 });
 
 /*----------  THUNKS  ----------*/
-export const loadStationStatus = () => dispatch => {
+export const loadAllProducts = () => dispatch => {
+   axios.get('/api/products')
+   .then( function(res) {
+    dispatch(receiveAllProducts(res.data))
+   })
+   .catch( (err) => console.error(err) );
 
 };
 
@@ -22,7 +25,7 @@ export const loadStationStatus = () => dispatch => {
 /*----------  REDUCER  ----------*/
 export default (state = initialState, action) => {
   switch (action.type) {
-    case RECEIVE_STATION_STATUS: return action.stations;
+    case RECEIVE_ALL_PRODUCTS: return action.products;
     default: return state;
   }
 };

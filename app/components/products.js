@@ -1,31 +1,49 @@
 import React, { Component } from 'react';
-// import Sidebar from './sidebar';
+import FilterBar from './filterBar';
+import ProductItem from './productItem';
 
-export default class Products extends Component {
+//export default
+class Products extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.loadAllProducts();
+  }
+
   render() {
-    console.log('in products.js')
+    let {allProducts} = this.props;
     return(
       <div className="row">
-        <div className="col s3">
-          <h1>Needs fixing, not working</h1>
-        </div>
-
-        <div className="col s9">
-          <div className="col s3">
-            <img src="martini-holder.jpg" />
-          </div>
-          <div className="col s3">
-            <img src="" />
-          </div>
-          <div className="col s3">
-            <img src="" />
-          </div>
-        </div>
+        { allProducts.filter((prod) => prod.inventory)
+          .map(function(product) {
+          return (
+            <div key={product.id} className="col s12 m6 l4">
+            <ProductItem product={product} />
+            </div>
+                  );
+        })}
       </div>
     );
   }
 }
+
+
+import { connect } from 'react-redux';
+import {loadAllProducts } from '../reducers/allProducts'
+
+const mapStateToProps = ({allProducts}) => ({
+  allProducts
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadAllProducts : function() {
+    dispatch(loadAllProducts());
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Products);
