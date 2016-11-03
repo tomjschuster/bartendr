@@ -24,6 +24,10 @@ const hardCodedData = [
     product: {id: 5, name: 'Sprite', description: null, abv: 40, size: '750 ml', inventory: 1, photoUrl:'/martini-holder.jpg'}
   }
 ];
+function findItem(cart, id) {
+  return cart.find(item => item.product && item.product.id === id)
+}
+
 
 const initialState = hardCodedData;
 // [
@@ -52,6 +56,12 @@ export const loadStationStatus = () => dispatch => {
 export default (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_STATION_STATUS: return action.stations;
+    let cart = [...state];
+    let item = findItem(cart, action.productId);
+    item.count = action.count;
+    return cart;
+    if (item) return
     default: return state;
   }
 };
+

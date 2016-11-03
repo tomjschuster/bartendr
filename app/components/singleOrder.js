@@ -27,32 +27,32 @@ class SingleOrder extends Component {
   constructor(props) {
     super(props);
     // this.state = store.getState();
-    this.state = { purchase_price: 40,
-      quantity: 1,
-      product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
-    }
+    // this.state = { purchase_price: 40,
+    //   quantity: 1,
+    //   product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
+    // }
 
-    this.total = this.total.bind(this);
-    this.updateQuantity = this.updateQuantity.bind(this);
+    // this.total = this.total.bind(this);
+    // this.updateQuantity = this.updateQuantity.bind(this);
   }
 
   total() {
     var output = 0;
-    for (var i = 0; i < this.state.cart.length; i++) {
-      output += (this.state.cart[i].purchase_price * this.state.cart[i].quantity);
+    for (var i = 0; i < this.props.cart.length; i++) {
+      output += (this.props.cart[i].purchase_price * this.props.cart[i].quantity);
     }
     return output.toFixed(2);
   }
 
-  updateQuantity(evt) {
-    this.setState({quantity: evt.target.value});
-  }
+  // updateQuantity(evt) {
+  //   this.setState({quantity: evt.target.value});
+  // }
 
 
   render() {
     console.log("state", this.state)
     console.log("props", this.props)
-    const { cart } = this.state;
+    const { cart } = this.props;
     return(
       <div>
         <h1>Your Cart</h1>
@@ -63,6 +63,7 @@ class SingleOrder extends Component {
                  <th data-field="name">Name</th>
                  <th data-field="name">Quantity</th>
                  <th data-field="price">Price</th>
+                 <th data-field="remove-btn"></th>
              </tr>
            </thead>
           {
@@ -81,6 +82,11 @@ class SingleOrder extends Component {
                      <input onChange={this.updateQuantity} type="number" name="quantity" min="1" max={item.product.inventory} defaultValue={item.quantity} width="20%"/>
                    </td>
                    <td>{(item.purchase_price * item.quantity).toFixed(2)}</td>
+                   <td>
+                    <a href="sass.html">
+                      <i className="material-icons">delete_forever</i>
+                    </a>
+                   </td>
                  </tr>
                 ))
              }
@@ -114,3 +120,4 @@ export default connect(
   mapDispatchToProps
 )(SingleOrder);
 
+// 43c9ff
