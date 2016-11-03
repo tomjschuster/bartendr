@@ -7,51 +7,31 @@ cart: [{product: product, quantity: 1}, {product: product, quantity: 1} ]
 */
 
 const hardCodedData = [
-  {productId: 1,
-    name: "Grey Goose",
+  { purchase_price: 40,
+    quantity: 1,
+    product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
+  },
+  { purchase_price: 40,
     quantity: 2,
-    price: 29.99
+    product: {id: 3, name: 'Tanqueray Gin', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
   },
-  {productId: 2,
-    name: "Jose Cuervo",
+  { purchase_price: 30,
     quantity: 1,
-    price: 9.99
+    product: {id: 4, name: 'Makers Mark', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
   },
-  {productId: 3,
-    name: "McCallan 41",
-    quantity: 1,
-    price: 399.99
-  },
-  {productId: 4,
-    name: "Moet Chandon",
-    quantity: 1,
-    price: 59.99
+  { purchase_price: 20,
+    quantity: 5,
+    product: {id: 5, name: 'Sprite', description: null, abv: 40, size: '750 ml', inventory: 1, photoUrl:'/martini-holder.jpg'}
   }
 ];
 
-const initialState =
-[
-  {productId: 1,
-    name: "Grey Goose",
-    quantity: 2,
-    price: 29.99
-  },
-  {productId: 2,
-    name: "Jose Cuervo",
-    quantity: 1,
-    price: 9.99
-  },
-  {productId: 3,
-    name: "McCallan 41",
-    quantity: 1,
-    price: 399.99
-  },
-  {productId: 4,
-    name: "Moet Chandon",
-    quantity: 1,
-    price: 59.99
-  }
-];
+const initialState = hardCodedData;
+// [
+//   { purchase_price: 0,
+//     quantity: 0,
+//     product: {}
+//   }
+// ]
 
 /*----------  ACTION TYPES  ----------*/
 const RECEIVE_STATION_STATUS = 'RECEIVE_STATION_STATUS';
