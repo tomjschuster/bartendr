@@ -18,7 +18,9 @@ class Products extends Component {
     let {allProducts} = this.props;
     return(
       <div>
-        <FilterBar />
+        <div className="row">
+          <FilterBar />
+        </div>
         <div className="row">
           { allProducts.filter((prod) => prod.inventory)
             .map(function(product) {

@@ -24,7 +24,7 @@ class FilterBar extends Component {
 
   render() {
     return (
-      <Collapsible popout>
+      <Collapsible>
         <CollapsibleItem header='Filter' icon='filter_drama'>
           <div className='row'>
             <div className='col s12 m4'>
