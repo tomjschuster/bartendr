@@ -24,10 +24,10 @@ const hardCodedData = [
     product: {id: 5, name: 'Sprite', description: null, abv: 40, size: '750 ml', inventory: 1, photoUrl:'/martini-holder.jpg'}
   }
 ];
-function findItem(cart, id) {
-  return cart.find(item => item.product && item.product.id === id)
-}
 
+// function findItem(cart, id) {
+//   return cart.find(item => item.product && item.product.id === id)
+// }
 
 const initialState = hardCodedData;
 // [
@@ -38,13 +38,26 @@ const initialState = hardCodedData;
 // ]
 
 /*----------  ACTION TYPES  ----------*/
-const RECEIVE_STATION_STATUS = 'RECEIVE_STATION_STATUS';
+const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
+// const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
+// const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
 
 /*----------  ACTION CREATORS  ----------*/
-export const receiveStationStatus = stations => ({
-  type: RECEIVE_STATION_STATUS,
-  stations
+export const updateQuantity = (newQuantity, productId) => ({
+  type: UPDATE_CART_QUANTITY,
+  productId: productId,
+  quantity: newQuantity
 });
+
+// export const receiveStationStatus = stations => ({
+//   type: RECEIVE_STATION_STATUS,
+//   stations
+// });
+
+// export const receiveStationStatus = stations => ({
+//   type: RECEIVE_STATION_STATUS,
+//   stations
+// });
 
 /*----------  THUNKS  ----------*/
 export const loadStationStatus = () => dispatch => {
@@ -55,13 +68,19 @@ export const loadStationStatus = () => dispatch => {
 /*----------  REDUCER  ----------*/
 export default (state = initialState, action) => {
   switch (action.type) {
-    case RECEIVE_STATION_STATUS: return action.stations;
-    let cart = [...state];
-    let item = findItem(cart, action.productId);
-    item.count = action.count;
-    return cart;
-    if (item) return
-    default: return state;
+    case UPDATE_CART_QUANTITY:
+      console.log("inside update cart reducer");
+      let cart = [...state];
+      cart.forEach(item => {
+        if (item.product.id === action.productId) {
+          item.quantity = action.quantity;
+        }
+      })
+      console.log("new cart", cart);
+      return cart;
+
+    default:
+      return state;
   }
 };
 

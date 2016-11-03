@@ -1,27 +1,9 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
+import { updateQuantity } from '../reducers/cart.js';
 import store from '../store';
 //current sessions cart; not pulling data from model backend
-
-const hardCodedData = [
-  { purchase_price: 40,
-    quantity: 1,
-    product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
-  },
-  { purchase_price: 40,
-    quantity: 2,
-    product: {id: 3, name: 'Tanqueray Gin', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
-  },
-  { purchase_price: 30,
-    quantity: 1,
-    product: {id: 4, name: 'Makers Mark', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
-  },
-  { purchase_price: 20,
-    quantity: 5,
-    product: {id: 5, name: 'Sprite', description: null, abv: 40, size: '750 ml', inventory: 1, photoUrl:'/martini-holder.jpg'}
-  }
-];
 
 class SingleOrder extends Component {
   constructor(props) {
@@ -50,7 +32,6 @@ class SingleOrder extends Component {
 
 
   render() {
-    console.log("state", this.state)
     console.log("props", this.props)
     const { cart } = this.props;
     return(
@@ -79,7 +60,7 @@ class SingleOrder extends Component {
                    <td><img src={item.product.photoUrl} height="55" width="55"></img></td>
                    <td>{item.product.name}</td>
                    <td>
-                     <input onChange={this.updateQuantity} type="number" name="quantity" min="1" max={item.product.inventory} defaultValue={item.quantity} width="20%"/>
+                     <input onChange={(e) => this.props.updateQuantity(e.target.value, item.product.id)} type="number" name="quantity" min="1" max={item.product.inventory} defaultValue={item.quantity} width="20%"/>
                    </td>
                    <td>{(item.purchase_price * item.quantity).toFixed(2)}</td>
                    <td>
@@ -111,8 +92,8 @@ const mapStateToProps = ({cart}) => ({
   cart: cart
 });
 
-const mapDispatchToProps = () => ({
-
+const mapDispatchToProps = (dispatch) => ({
+  updateQuantity: (newQuantity, productId) => dispatch(updateQuantity(newQuantity, productId))
 });
 
 export default connect(
@@ -121,3 +102,21 @@ export default connect(
 )(SingleOrder);
 
 // 43c9ff
+const hardCodedData = [
+  { purchase_price: 40,
+    quantity: 1,
+    product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
+  },
+  { purchase_price: 40,
+    quantity: 2,
+    product: {id: 3, name: 'Tanqueray Gin', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
+  },
+  { purchase_price: 30,
+    quantity: 1,
+    product: {id: 4, name: 'Makers Mark', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
+  },
+  { purchase_price: 20,
+    quantity: 5,
+    product: {id: 5, name: 'Sprite', description: null, abv: 40, size: '750 ml', inventory: 1, photoUrl:'/martini-holder.jpg'}
+  }
+];
