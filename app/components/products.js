@@ -17,15 +17,18 @@ class Products extends Component {
   render() {
     let {allProducts} = this.props;
     return(
-      <div className="row">
-        { allProducts.filter((prod) => prod.inventory)
-          .map(function(product) {
-          return (
-            <div key={product.id} className="col s12 m6 l4">
-            <ProductItem product={product} />
-            </div>
-                  );
-        })}
+      <div>
+        <FilterBar />
+        <div className="row">
+          { allProducts.filter((prod) => prod.inventory)
+            .map(function(product) {
+            return (
+              <div key={product.id} className="col s12 m6 l4">
+              <ProductItem product={product} />
+              </div>
+                    );
+          })}
+        </div>
       </div>
     );
   }
