@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
 
 //current sessions cart; not pulling data from model backend
 
 
 
-export default class SingleOrder extends Component {
+class SingleOrder extends Component {
   constructor(props) {
     super(props);
   }
@@ -85,4 +86,17 @@ export default class SingleOrder extends Component {
     );
   }
 }
+
+const mapStateToProps = ({cart}) => ({
+  cart: cart
+});
+
+const mapDispatchToProps = () => ({
+
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(singleOrder);
 

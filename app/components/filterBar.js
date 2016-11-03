@@ -13,6 +13,6 @@ export default class FilterBar extends Component {
   }
 
   render() {
-    ();
+    <h1>filterbar</h1>
   }
 }

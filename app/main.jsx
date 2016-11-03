@@ -10,7 +10,7 @@ import SingleProduct from "./components/singleProduct"
 import Login from './components/Login.jsx'
 import Root from './components/Root'
 import Home from './components/home'
-import SingleOrder from "./containers/singleOrder";
+import SingleOrder from "./components/singleOrder";
 
 import store from './store';
 
