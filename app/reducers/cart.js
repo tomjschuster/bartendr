@@ -9,19 +9,19 @@ cart: [{product: product, quantity: 1}, {product: product, quantity: 1} ]
 const hardCodedData = [
   { purchase_price: 40,
     quantity: 1,
-    product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
+    product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/media/martini-holder.jpg'}
   },
   { purchase_price: 40,
     quantity: 2,
-    product: {id: 3, name: 'Tanqueray Gin', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
+    product: {id: 3, name: 'Tanqueray Gin', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/media/martini-holder.jpg'}
   },
   { purchase_price: 30,
     quantity: 1,
-    product: {id: 4, name: 'Makers Mark', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
+    product: {id: 4, name: 'Makers Mark', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/media/martini-holder.jpg'}
   },
   { purchase_price: 20,
     quantity: 5,
-    product: {id: 5, name: 'Sprite', description: null, abv: 40, size: '750 ml', inventory: 1, photoUrl:'/martini-holder.jpg'}
+    product: {id: 5, name: 'Sprite', description: null, abv: 40, size: '750 ml', inventory: 1, photoUrl:'/media/martini-holder.jpg'}
   }
 ];
 
@@ -39,8 +39,8 @@ const initialState = hardCodedData;
 
 /*----------  ACTION TYPES  ----------*/
 const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
-// const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
-// const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
+const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
+const ADD_TO_CART = 'ADD_TO_CART';
 
 /*----------  ACTION CREATORS  ----------*/
 export const updateQuantity = (newQuantity, productId) => ({
@@ -49,15 +49,15 @@ export const updateQuantity = (newQuantity, productId) => ({
   quantity: newQuantity
 });
 
-// export const receiveStationStatus = stations => ({
-//   type: RECEIVE_STATION_STATUS,
-//   stations
-// });
+export const removeCartItem = (productId) => ({
+  type: REMOVE_CART_ITEM,
+  productId: productId
+});
 
-// export const receiveStationStatus = stations => ({
-//   type: RECEIVE_STATION_STATUS,
-//   stations
-// });
+export const addToCart = (productId) => ({
+  type: ADD_TO_CART,
+  productId: productId
+});
 
 /*----------  THUNKS  ----------*/
 export const loadStationStatus = () => dispatch => {
@@ -69,16 +69,26 @@ export const loadStationStatus = () => dispatch => {
 export default (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_CART_QUANTITY:
-      console.log("inside update cart reducer");
-      let cart = [...state];
+      var cart = [...state];
       cart.forEach(item => {
         if (item.product.id === action.productId) {
           item.quantity = action.quantity;
         }
       })
-      console.log("new cart", cart);
       return cart;
-
+    case REMOVE_CART_ITEM:
+      var cart = [...state];
+      var finalCart = [];
+      cart.forEach(item => {
+        if (item.product.id !== action.productId) {
+          finalCart.push(item);
+        }
+      })
+      return finalCart;
+    case ADD_TO_CART:
+      var cart = [...state];
+      // needs further fetching with single product
+      return cart;
     default:
       return state;
   }

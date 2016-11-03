@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { updateQuantity } from '../reducers/cart.js';
+import { updateQuantity, removeCartItem } from '../reducers/cart.js';
 import store from '../store';
 //current sessions cart; not pulling data from model backend
 
@@ -64,7 +64,7 @@ class SingleOrder extends Component {
                    </td>
                    <td>{(item.purchase_price * item.quantity).toFixed(2)}</td>
                    <td>
-                    <a href="sass.html">
+                    <a href="#" onClick={() => this.props.removeCartItem(item.product.id)}>
                       <i className="material-icons">delete_forever</i>
                     </a>
                    </td>
@@ -80,9 +80,14 @@ class SingleOrder extends Component {
                   this.total()
                 }
               </td>
+              <td></td>
              </tr>
            </tbody>
          </table>
+         <br></br>
+         <button className="right btn waves-effect light-blue accent-2" type="submit" name="action">Checkout
+          <i className="material-icons right">send</i>
+        </button>
        </div>
     );
   }
@@ -93,30 +98,11 @@ const mapStateToProps = ({cart}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateQuantity: (newQuantity, productId) => dispatch(updateQuantity(newQuantity, productId))
+  updateQuantity: (newQuantity, productId) => dispatch(updateQuantity(newQuantity, productId)),
+  removeCartItem: (productId) => dispatch(removeCartItem(productId))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SingleOrder);
-
-// 43c9ff
-const hardCodedData = [
-  { purchase_price: 40,
-    quantity: 1,
-    product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
-  },
-  { purchase_price: 40,
-    quantity: 2,
-    product: {id: 3, name: 'Tanqueray Gin', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
-  },
-  { purchase_price: 30,
-    quantity: 1,
-    product: {id: 4, name: 'Makers Mark', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
-  },
-  { purchase_price: 20,
-    quantity: 5,
-    product: {id: 5, name: 'Sprite', description: null, abv: 40, size: '750 ml', inventory: 1, photoUrl:'/martini-holder.jpg'}
-  }
-];
