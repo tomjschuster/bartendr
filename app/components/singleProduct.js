@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import FilterBar from './filterBar';
+import { connect } from 'react-redux';
 
-export default class SingleProduct extends Component {
+class SingleProduct extends Component {
   constructor(props) {
     super(props);
   }
@@ -9,8 +9,21 @@ export default class SingleProduct extends Component {
   render() {
     return(
       <div>
-      <FilterBar/>
+        <h1>Single Order</h1>
       </div>
     );
   }
 }
+
+const mapStateToProps = () => ({
+
+});
+
+const mapDispatchToProps = () => ({
+
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SingleProduct);

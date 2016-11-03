@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Navbar from './navbar';
 import Home from './home';
 
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
   }
@@ -23,3 +24,17 @@ export default class App extends Component {
     );
   }
 }
+
+
+const mapStateToProps = () => ({
+
+});
+
+const mapDispatchToProps = () => ({
+
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

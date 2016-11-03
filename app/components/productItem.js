@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
-export default class ProductItem extends Component {
+class ProductItem extends Component {
   constructor(props) {
     super(props);
   }
@@ -9,8 +10,6 @@ export default class ProductItem extends Component {
   render() {
     let { id, name, photoUrl, price } = this.props.product;
     return(
-
-
           <div className="card">
             <div className="card-image">
               <Link to={`/products/${id}`}><img src={photoUrl}/></Link>
@@ -35,13 +34,21 @@ export default class ProductItem extends Component {
                <a className="waves-effect waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
             </div>
           </div>
-
-
-
-
-
-
-
     );
   }
 }
+
+
+const mapStateToProps = () => ({
+
+});
+
+const mapDispatchToProps = () => ({
+
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductItem);
+

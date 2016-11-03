@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {loadAllProducts } from '../reducers/allProducts'
 import FilterBar from './filterBar';
 import ProductItem from './productItem';
 
@@ -30,15 +32,12 @@ class Products extends Component {
 }
 
 
-import { connect } from 'react-redux';
-import {loadAllProducts } from '../reducers/allProducts'
-
 const mapStateToProps = ({allProducts}) => ({
   allProducts
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadAllProducts : function() {
+  loadAllProducts: function() {
     dispatch(loadAllProducts());
   }
 });
