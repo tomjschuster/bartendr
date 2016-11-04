@@ -9,7 +9,27 @@ class Home extends Component {
   render() {
     return(
       <div>
-        <h1>Home</h1>
+        <br/>
+        <br/>
+        <br/>
+        <div className="row">
+          <div className="col s12">
+            <div className="row">
+              <div className="col s1"></div>
+              <div className="col s10">
+                <img src="/media/martini-drink-with-splash.png" width="100%"/>
+              </div>
+              <div className="col s1"></div>
+              <div className="input-field col s12">
+                <i className="material-icons">search
+                </i>
+                <input type="text" id="autocomplete-input" className="autocomplete">
+                </input>
+                <label for="autocomplete-input"></label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
