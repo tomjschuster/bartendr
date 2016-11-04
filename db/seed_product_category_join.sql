@@ -1,4 +1,4 @@
-INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (1, 1, now(), now());
+module.exports = "INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (1, 1, now(), now());
 INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (1, 5, now(), now());
 INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (1, 11, now(), now());
 INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (1, 57, now(), now());
@@ -2951,4 +2951,4 @@ INSERT INTO product_category (product_id, category_id, created_at, updated_at) v
 INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (895, 1, now(), now());
 INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (895, 7, now(), now());
 INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (895, 20, now(), now());
-INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (895, 76, now(), now());
+INSERT INTO product_category (product_id, category_id, created_at, updated_at) values (895, 76, now(), now());"
