@@ -48,6 +48,7 @@
     "express": "^4.14.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.1.1",
+    "lodash": "^4.16.6",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
