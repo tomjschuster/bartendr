@@ -94,21 +94,6 @@ const seedCategories = () => db.Promise.map([
   ], category => db.model('category').create(category))
 
 const seedProducts = () => db.Promise.map([
-
-<<<<<<< HEAD
-  {name: "Grey Goose Vodka", abv: 40, size: "750 ml", price: 40, inventory: 5, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Barcardi Silver", abv: 40, size: "750 ml", price: 30, inventory: 5, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Tanqueray Gin", abv: 40, size: "750 ml", price: 30, inventory: 5, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Makers Mark", abv: 40, size: "750 ml", price: 40, inventory: 1, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Sprite", abv: 40, size: "750 ml", price: 3, inventory: 5, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Cranberry Juice", abv: 40, size: "750 ml", price: 2, inventory: 3, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Johnny Walker Black", abv: 40, size: "750 ml", price: 30, inventory: 5, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Tonic", abv: 40, size: "750 ml", price: 2, inventory: 2, photoUrl: "/media/martini-holder.jpg"},
-  {name: "CocaCola", abv: 40, size: "750 ml", price: 3, inventory: 5, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Stoli Vodka", abv: 40, size: "750 ml", price: 40, inventory: 7, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Svedka Vodka", abv: 40, size: "750 ml", price: 30, inventory: 5, photoUrl: "/media/martini-holder.jpg"},
-  {name: "Jim Beam", abv: 40, size: "750 ml", price: 40, inventory: 5, photoUrl: "/media/martini-holder.jpg"}
-=======
 {id: 233, name: "1800 Anejo Tequila", size: "750 ML", proof: 80, price: 38.95, inventory: 8, photoUrl: "/media/products/209991.jpg"},
 {id: 235, name: "1800 Coconut Tequila", size: "750 ML", proof: 70, price: 30.95, inventory: 86, photoUrl: "/media/products/1800_mainproductphotos_coconut_new.png"},
 {id: 237, name: "1800 Reposado Tequila", size: "375 ML", proof: 80, price: 15.45, inventory: 10, photoUrl: "/media/products/1800_mainproductphotos_reposado_new_2.png"},
@@ -622,8 +607,7 @@ const seedProducts = () => db.Promise.map([
 {id: 401, name: "Whistlepig Whiskey 10 Year Rye", size: "750 ML", proof: 112.4, price: 86.5, inventory: 36, photoUrl: "/media/products/s0112-2.jpg"},
 {id: 403, name: "Woodford Reserve", size: "375 ML", proof: 90.4, price: 18.95, inventory: 57, photoUrl: "/media/products/woodford-reserve-bourbon1.jpg"},
 {id: 404, name: "Woodford Reserve", size: "750 ML", proof: 90.4, price: 34.95, inventory: 48, photoUrl: "/media/products/woodford-reserve-bourbon1.jpg"},
-{id: 406, name: "Woodford Reserve Rye", size: "750 ML", proof: 90.4, price: 34.95, inventory: 95, photoUrl: "/media/products/slideshow-woodford-reserve-rye.jpg"},
->>>>>>> try-seed
+{id: 406, name: "Woodford Reserve Rye", size: "750 ML", proof: 90.4, price: 34.95, inventory: 95, photoUrl: "/media/products/slideshow-woodford-reserve-rye.jpg"}
 
 ], product => db.model('product').create(product))
 
