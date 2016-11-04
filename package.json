@@ -2,7 +2,7 @@
   "name": "bartendr",
   "version": "0.0.1",
   "description": "lots of alcohol",
-  "engine": {
+  "engines": {
     "node": "6.7.0"
   },
   "main": "index.js",
