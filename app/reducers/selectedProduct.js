@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 /*----------  INITIAL STATE  ----------*/
 const initialState =
 {
@@ -5,16 +7,32 @@ const initialState =
 };
 
 /*----------  ACTION TYPES  ----------*/
-const RECEIVE_STATION_STATUS = 'RECEIVE_STATION_STATUS';
+const RECEIVE_SINGLE_PRODUCT = "RECEIVE_SINGLE_PRODUCT";
+// const SET_SELECTED_PRODUCT = 'SET_SELECTED_PRODUCT';
+
 
 /*----------  ACTION CREATORS  ----------*/
-export const receiveStationStatus = stations => ({
-  type: RECEIVE_STATION_STATUS,
-  stations
+
+export const receiveSingleProduct = selectedProduct => ({
+  type: RECEIVE_SINGLE_PRODUCT,
+  selectedProduct
 });
 
+// export const setSelectedProduct = productId => ({
+//   type: SET_SELECTED_PRODUCT,
+//   productId
+// });
+
+
+
 /*----------  THUNKS  ----------*/
-export const loadStationStatus = () => dispatch => {
+export const loadSingleProduct = (id) => dispatch => {
+  console.log("TRYING TO LOAD SINGLE PRODUCT");
+  axios.get(`/api/products/${id}`)
+   .then( function(res) {
+    dispatch(receiveSingleProduct(res.data));
+   })
+   .catch( (err) => console.error(err) );
 
 };
 
@@ -22,7 +40,10 @@ export const loadStationStatus = () => dispatch => {
 /*----------  REDUCER  ----------*/
 export default (state = initialState, action) => {
   switch (action.type) {
-    case RECEIVE_STATION_STATUS: return action.stations;
+    case RECEIVE_SINGLE_PRODUCT: {
+      let newState = action.selectedProduct;
+      return newState;
+    }
     default: return state;
   }
 };

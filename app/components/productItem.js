@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import {loadSingleProduct} from '../reducers/selectedProduct';
 
 class ProductItem extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class ProductItem extends Component {
   }
 
   render() {
+
     let { id, name, photoUrl, price } = this.props.product;
     return(
           <div className="card">
@@ -18,7 +20,7 @@ class ProductItem extends Component {
             <div className="card-content">
               <ul>
                 <li>{name}</li>
-                <li>{price}</li>
+                <li>{`$${price}`}</li>
                 <li>
                   <div className="stars">
                     <i className="tiny material-icons">grade</i>
@@ -31,7 +33,7 @@ class ProductItem extends Component {
               </ul>
             </div>
             <div className="card-action">
-               <a className="waves-effect waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
+               <a className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
             </div>
           </div>
     );
@@ -43,8 +45,9 @@ const mapStateToProps = () => ({
 
 });
 
-const mapDispatchToProps = () => ({
-
+const mapDispatchToProps = (dispatch) => ({
+  loadSingleProduct: product => {console.log("inside dispatch") ;
+                       dispatch(loadSingleProduct(product) )}
 });
 
 export default connect(
