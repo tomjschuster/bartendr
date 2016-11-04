@@ -8,14 +8,6 @@ import store from '../store';
 class SingleOrder extends Component {
   constructor(props) {
     super(props);
-    // this.state = store.getState();
-    // this.state = { purchase_price: 40,
-    //   quantity: 1,
-    //   product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/martini-holder.jpg'}
-    // }
-
-    // this.total = this.total.bind(this);
-    // this.updateQuantity = this.updateQuantity.bind(this);
   }
 
   total() {
@@ -26,13 +18,7 @@ class SingleOrder extends Component {
     return output.toFixed(2);
   }
 
-  // updateQuantity(evt) {
-  //   this.setState({quantity: evt.target.value});
-  // }
-
-
   render() {
-    console.log("props", this.props)
     const { cart } = this.props;
     return(
       <div>
