@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import allProducts from "./allProducts";
+import allCategories from "./allCategories";
 import allUsers from "./allUsers";
 import cart from "./cart";
 import currentUser from "./currentUser";
@@ -11,6 +12,7 @@ import auth from "./auth.jsx";
 
 export default combineReducers({
   allProducts,
+  allCategories,
   allUsers,
   cart,
   currentUser,

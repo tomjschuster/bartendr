@@ -6,19 +6,14 @@ const router = module.exports = require('express').Router()
 
 /*----------  SINGLE PRODUCTS  ----------*/
 router.get('/:id', (req, res, next) => {
-  console.log(req.params.id);
- Product.findOne(req.params.id).
-  then(function(product) {
-    res.json(product);
-  })
-  .catch(next);
+  Product.findById(req.params.id)
+    .then(product => res.json(product))
+    .catch(next);
 })
 
 /*----------  ALL PRODUCTS  ----------*/
 router.get('/', (req, res, next) => {
-  Product.findAll({include: [Category]}).
-  then(function(products) {
-    res.json(products);
-  })
-  .catch(next);
+  Product.findAll({include: [Category]})
+    .then(products => res.json(products))
+    .catch(next);
 })

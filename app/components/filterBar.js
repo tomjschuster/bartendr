@@ -23,15 +23,17 @@ class FilterBar extends Component {
   }
 
   render() {
+    let { allCategories, setCurrentCategory } = this.props;
     return (
       <Collapsible>
         <CollapsibleItem header='Filter' icon='filter_drama'>
           <div className='row'>
             <div className='col s12 m4'>
-            <Input s={12} type='select'>
-              <option value='1' disabled selected>Category</option>
-              <option value='2'>Option 2</option>
-              <option value='3'>Option 3</option>
+            <Input s={12} type='select' defaultValue={0} onChange={evt => setCurrentCategory(Number(evt.target.value))}>
+              <option value='' disabled selected>Category</option>
+              { allCategories.map(category => (
+               <option value={category.id}>{category.name}</option>
+                ))}
             </Input>
             </div>
             <div className='col s12 m4'>
@@ -55,8 +57,8 @@ class FilterBar extends Component {
   }
 }
 
-const mapStateToProps = () => ({
-
+const mapStateToProps = ({allCategories}) => ({
+  allCategories
 });
 
 const mapDispatchToProps = () => ({
