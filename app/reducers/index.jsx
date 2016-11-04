@@ -20,7 +20,7 @@ export default combineReducers({
   selectedOrder,
   selectedProduct,
   selectedUser,
-  auth: auth.default
+  auth
 });
 
 // BONES UPDATE: INCLUDED auth.jsx reducer
