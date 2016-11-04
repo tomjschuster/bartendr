@@ -12,6 +12,9 @@ import Root from './components/Root'
 import Home from './components/home'
 import SingleOrder from "./components/singleOrder";
 
+import {loadSingleProduct} from './reducers/selectedProduct';
+
+
 import store from './store';
 
 // BONES UPDATE: ADDED Login.jsx
@@ -22,13 +25,19 @@ import store from './store';
 //       <Route path="/login" component={Login} />
 //     </Router>
 //   </Provider>
+const onSingleProductEnter = function(nextRouterState){
+  const productId = nextRouterState.params.productId;
+  const thunk = loadSingleProduct(productId);
+  store.dispatch(thunk);
+
+}
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="/products" component={Products} />
-        <Route path="/products/:productId" component={SingleProduct} />
+        <Route path="/products/:productId" component={SingleProduct} onEnter={onSingleProductEnter} />
         <Route path="/orderHistory" component={Root} />
         <Route path="/orderHistory/:orderId" component={Root} />
         <Route path="/cart" component={SingleOrder} />
