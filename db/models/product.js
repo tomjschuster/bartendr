@@ -9,10 +9,10 @@ const Product = db.define('product', {
     allowNull: false
   },
 
-  abv : {
+  proof : {
     type: Sequelize.DECIMAL,
     validate: {
-      min: 0, max: 100
+      min: 0, max: 200
     }
   },
 
