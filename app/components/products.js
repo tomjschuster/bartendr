@@ -11,9 +11,11 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCategory: null
+      currentCategory: null,
+      maxPrice: null
     }
     this.setCurrentCategory = this.setCurrentCategory.bind(this);
+    this.setMaxPrice = this.setMaxPrice.bind(this);
   }
 
   addCategory(category) {
@@ -22,8 +24,10 @@ class Products extends Component {
   }
 
   setCurrentCategory(id) {
-    console.log('setting category to', id);
     this.setState({currentCategory: id})
+  }
+  setMaxPrice(max) {
+    this.setState({maxPrice: max})
   }
 
   componentDidMount() {
@@ -33,15 +37,19 @@ class Products extends Component {
 
   render() {
     let {allProducts} = this.props;
-    let { currentCategory } = this.state;
+    let { currentCategory, maxPrice } = this.state;
     return(
       <div>
         <div className="row">
-          <FilterBar setCurrentCategory={this.setCurrentCategory} />
+          <FilterBar setCurrentCategory={this.setCurrentCategory}
+                     setMaxPrice={this.setMaxPrice}/>
         </div>
         <div className="row">
           { allProducts.filter((prod) =>
-              prod.inventory && (!currentCategory || _.find(prod.categories, {id: currentCategory})))
+              prod.inventory &&
+                (!currentCategory || _.find(prod.categories, {id: currentCategory})) &&
+                (!maxPrice || prod.price <= maxPrice)
+                )
             .map(function(product) {
             return (
               <div key={product.id} className="col s12 m6 l4">
