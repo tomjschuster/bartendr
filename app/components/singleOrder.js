@@ -36,7 +36,8 @@ class SingleOrder extends Component {
     const { cart } = this.props;
     return(
       <div>
-        <h1>Your Cart</h1>
+        <br />
+        <img src="/media/your_cart_blue.png" height="50px"/>
         <table className="responsive-table striped">
            <thead>
              <tr>
@@ -48,8 +49,7 @@ class SingleOrder extends Component {
              </tr>
            </thead>
           {
-            cart.length ? <h2></h2> :
-                <h2>Buy something.</h2>
+            cart.length ? <h2></h2> : <img src="/media/cart_empty_grey.png" height="100%"></img>
           }
 
            <tbody>
