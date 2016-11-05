@@ -27,7 +27,7 @@ class Signup extends Component {
           </div>
           ) : (
             <div>
-              <h1>Sign Up</h1>
+              <h3>Sign Up</h3>
               <form>
                 <input name="name" type="text" placeholder="Name"/>
                 <input name="email" type="email" placeholder="Email"/>

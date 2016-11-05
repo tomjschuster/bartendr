@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 class Navbar extends Component {
   constructor(props) {
@@ -13,14 +14,14 @@ class Navbar extends Component {
           <a href="#!" className="brand-logo"><img src="/media/bartendr_logo_white_trans.png" height="60px"></img></a>
           <a href="#" data-activates="mobile-demo" className="button-collapse right"><i className="material-icons">menu</i></a>
           <ul className="right hide-on-med-and-down">
-            <li><a href="sass.html"><i className="material-icons">search</i></a></li>
-            <li><a href="badges.html"><i className="material-icons">perm_identity</i></a></li>
-            <li><a href="mobile.html"><i className="material-icons">shopping_cart</i></a></li>
+            <li><Link to="/products"><i className="material-icons">search</i></Link></li>
+            <li><Link to="/login"><i className="material-icons">perm_identity</i></Link></li>
+            <li><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></li>
           </ul>
           <ul className="side-nav" id="mobile-demo">
-            <li><a href="sass.html">Search</a></li>
-            <li><a href="badges.html">Login</a></li>
-            <li><a href="mobile.html">My Cart</a></li>
+            <li><Link to="/products"><i className="material-icons">Products</i></Link></li>
+            <li><Link to="/login"><i className="material-icons">Login</i></Link></li>
+            <li><Link to="/cart"><i className="material-icons">My Cart</i></Link></li>
           </ul>
         </div>
       </nav>
@@ -28,8 +29,8 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = () => ({
-
+const mapStateToProps = ({auth}) => ({
+  auth
 });
 
 const mapDispatchToProps = () => ({

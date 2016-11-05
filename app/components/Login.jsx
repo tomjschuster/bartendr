@@ -22,9 +22,10 @@ export const Login = ({ login, auth }) => {return auth ?
       evt.preventDefault()
       login(evt.target.username.value, evt.target.password.value)
     } }>
+      <h3>Login</h3>
       <input name="username" placeholder="Email"/>
       <input name="password" placeholder="Password" type="password" />
-      <input type="submit" value="Login" />
+      <input className="btn" type="submit" value="Login" />&nbsp;&nbsp;OR&nbsp;&nbsp;<Link to="/signup"><input className="btn" type="submit" value="Signup" /></Link>
     </form>)
 }
 
