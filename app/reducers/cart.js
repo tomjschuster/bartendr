@@ -6,7 +6,7 @@ import axios from 'axios';
 cart: [{product: product, quantity: 1}, {product: product, quantity: 1} ]
 */
 
-const hardCodedData = [
+export const hardCodedData = [
   { purchase_price: 40,
     quantity: 1,
     product: {id: 1, name: 'Grey Goose Vodka', description: null, abv: 40, size: '750 ml', inventory: 5, photoUrl:'/media/martini-holder.jpg'}
@@ -41,6 +41,7 @@ const initialState = hardCodedData;
 const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
 const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 const ADD_TO_CART = 'ADD_TO_CART';
+const RECEIVE_CART = "RECEIVE_CART";
 
 /*----------  ACTION CREATORS  ----------*/
 export const updateQuantity = (newQuantity, productId) => ({
@@ -54,10 +55,16 @@ export const removeCartItem = (productId) => ({
   productId: productId
 });
 
+export const receiveCart = (cart) => ({
+  type: RECEIVE_CART,
+  cart: cart
+});
+
 export const addToCart = (productId) => ({
   type: ADD_TO_CART,
   productId: productId
 });
+
 
 /*----------  THUNKS  ----------*/
 export const loadStationStatus = () => dispatch => {
@@ -74,7 +81,8 @@ export default (state = initialState, action) => {
         if (item.product.id === action.productId) {
           item.quantity = action.quantity;
         }
-      })
+      });
+      localStorage.cart = JSON.stringify(cart);
       return cart;
     case REMOVE_CART_ITEM:
       var cart = [...state];
@@ -83,12 +91,16 @@ export default (state = initialState, action) => {
         if (item.product.id !== action.productId) {
           finalCart.push(item);
         }
-      })
+      });
+      localStorage.cart = JSON.stringify(finalCart);
       return finalCart;
     case ADD_TO_CART:
       var cart = [...state];
       // needs further fetching with single product
+      localStorage.cart = JSON.stringify(cart);
       return cart;
+    case RECEIVE_CART:
+      return action.cart;
     default:
       return state;
   }

@@ -33,4 +33,12 @@ router.get('/', (req, res, next) => {
   Product.findAll({include: [Category, Review]})
     .then(products => res.json(products))
     .catch(next);
+    // if(req.session.counter) {
+  //   req.session.counter++;
+  // } else {
+  //   req.session.counter = 1;
+  // }
+
+  // console.log("req.session.counter", req.session.counter)
+
 })

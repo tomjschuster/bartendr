@@ -13,6 +13,7 @@ import Home from './components/home'
 import SingleOrder from "./components/singleOrder";
 
 import {loadSingleProduct} from './reducers/selectedProduct';
+import {receiveCart, hardCodedData } from "./reducers/cart";
 
 
 import store from './store';
@@ -32,10 +33,19 @@ const onSingleProductEnter = function(nextRouterState){
 
 }
 
+const onAppEnter = function () {
+  let cart = localStorage.cart && JSON.parse(localStorage.cart)
+  if(cart) {
+    store.dispatch(receiveCart(cart));
+  } else {
+    localStorage.cart = JSON.stringify(hardCodedData);
+  }
+}
+
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
+      <Route path="/" component={App} onEnter={onAppEnter}>
         <Route path="/products" component={Products} />
         <Route path="/products/:productId" component={SingleProduct} onEnter={onSingleProductEnter} />
         <Route path="/orderHistory" component={Root} />
