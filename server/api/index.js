@@ -16,6 +16,18 @@ api.use('/products', productsRouter);
 api.use('/orders', ordersRouter);
 api.use('/categories', categoriesRouter);
 
+api.get('/logout', (req, res, next) => {
+  console.log('req.session', req.session)
+  req.logout();
+  req.session.destroy(err => {
+    res.redirect('/')
+    console.log('the error', err);
+    // res.send(202)
+  });
+  console.log('after logout', req.session)
+  console.log('req.session', req.session)
+})
+
 // Send along any errors
 api.use((err, req, res, next) => {
   res.status(500).send(err)

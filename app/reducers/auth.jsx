@@ -1,17 +1,24 @@
 import {newError} from "./error";
 
-const reducer = (state=null, action) => {
-  switch(action.type) {
-  case AUTHENTICATED:
-    return action.user
-  }
-  return state
-}
+/*----------  INITIAL STATE  ----------*/
+const initialState = null;
+
+/*----------  ACTION TYPES  ----------*/
 
 const AUTHENTICATED = 'AUTHENTICATED'
+const LOGOUT = 'LOGOUT'
+
+/*----------  ACTION CREATORS  ----------*/
+
 export const authenticated = user => ({
   type: AUTHENTICATED, user
 })
+
+export const logout = () => ({
+  type: LOGOUT
+})
+
+/*----------  THUNKS  ----------*/
 
 import axios from 'axios'
 
@@ -34,8 +41,6 @@ export const whoami = () =>
         dispatch(authenticated(user))
       })
 
-/* THUNK */
-
 export const createNewUser = (user) =>
   dispatch =>
     axios.post("/api/users", user)
@@ -54,6 +59,25 @@ export const createNewUser = (user) =>
           dispatch(newError(error));
           // console.log(error.message);
          });
+
+/////// WTF!!!!!!!!!!!!!!!!!!!!!!!! (the destroy session logout thing...Getting 500 status error on logout)
+export const endSession = () =>
+  dispatch =>
+    axios.get("api/logout")
+      // .then(() => dispatch(logout())) THIS IS NOT AN ACCEPTABLE WORK AROUND!
+      .catch(() => dispatch(logout()))
+
+/*----------  REDUCER  ----------*/
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+  case AUTHENTICATED:
+    return action.user;
+  case LOGOUT:
+    return null;
+  default: return state;
+  }
+};
 
 
 /* api/users POST request response body
@@ -86,4 +110,3 @@ export const createNewUser = (user) =>
 
 */
 
-export default reducer
