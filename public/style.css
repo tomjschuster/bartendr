@@ -3,3 +3,10 @@
   max-width: 50vh;
   margin: 0 auto;
 }
+
+#toast-container {
+  bottom: auto !important;
+  left: auto !important;
+  top: 10%;
+  right:7%;
+}

@@ -1,3 +1,5 @@
+import {newError} from "./error";
+
 const reducer = (state=null, action) => {
   switch(action.type) {
   case AUTHENTICATED:
@@ -43,11 +45,15 @@ export const createNewUser = (user) =>
           dispatch(login(user.email, user.password));
         } else
         {
-          alert(JSON.stringify(response));
+          dispatch(newError(response));
           // dispatch(setError(response.data));
         }
       })
-      .catch(console.error);
+      .catch(error =>
+        {
+          dispatch(newError(error));
+          // console.log(error.message);
+         });
 
 
 /* api/users POST request response body

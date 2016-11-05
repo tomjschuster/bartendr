@@ -29,12 +29,17 @@ class Signup extends Component {
           ) : (
             <div>
               <h3>Sign Up</h3>
+              {
+                this.props.error && Materialize.toast(this.props.error.message, 4000)
+
+
+              }
               <form onSubmit={this.props.submitNewUser}>
-                <input name="name" type="text" placeholder="Name"/>
-                <input name="email" type="email" placeholder="Email"/>
+                <input name="name" type="text" placeholder="Name" required/>
+                <input name="email" type="email" placeholder="Email"required/>
                 <input name="address" rows="4" placeholder="Address" />
-                <input name="password" type="password" placeholder="Password"/>
-                <input name="password_confirmation" type="password" placeholder="Confirm Password"/>
+                <input name="password" type="password" placeholder="Password" required/>
+                <input name="password_confirmation" type="password" placeholder="Confirm Password" required/>
                 <button type="submit" className="btn">Sign Up</button>
               </form>
             </div>
@@ -45,8 +50,9 @@ class Signup extends Component {
 }
 
 
-const mapStateToProps = ({auth}) => ({
-  auth
+const mapStateToProps = ({auth, error}) => ({
+  auth,
+  error
 });
 
 const mapDispatchToProps = (dispatch) => ({

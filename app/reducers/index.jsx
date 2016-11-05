@@ -9,6 +9,7 @@ import selectedOrder from "./selectedOrder";
 import selectedProduct from "./selectedProduct";
 import selectedUser from "./selectedUser";
 import auth from "./auth.jsx";
+import error from "./error.js";
 
 export default combineReducers({
   allProducts,
@@ -20,7 +21,8 @@ export default combineReducers({
   selectedOrder,
   selectedProduct,
   selectedUser,
-  auth
+  auth,
+  error
 });
 
 // BONES UPDATE: INCLUDED auth.jsx reducer
