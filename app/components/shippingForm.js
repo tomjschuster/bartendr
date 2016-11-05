@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input } from 'react-materialize';
 import { Link } from 'react-router';
+import { createNewUser } from "../reducers/auth.jsx";
 
 class ShippingForm extends Component {
   constructor(props) {
@@ -29,32 +30,65 @@ class ShippingForm extends Component {
       <div className="row ">
       <br /><br />
       <h3>Continue as a Guest:</h3>
-    <form className="col s12 ">
+
+    <form className="col s12" onSubmit={this.props.submitNewUser}>
       <div className="row">
         <div className="input-field col s12">
-          <input id="first_name" type="text" className="validate" />
-          <label htmlFor="first_name" className="light-blue-text text-accent-2">First Name</label>
-        </div>
-        <div className="input-field col s12">
-          <input id="last_name" type="text" className="validate" />
-          <label htmlFor="last_name" className="light-blue-text text-accent-2">Last Name</label>
+          <input id="first_name" name="name" type="text" className="validate" />
+          <label htmlFor="first_name" className="light-blue-text text-accent-2">Name</label>
         </div>
       </div>
 
       <div className="row">
         <div className="input-field col s12">
-          <input id="email" type="email" className="validate" />
+          <input id="email" name="email" type="email" className="validate" />
           <label htmlFor="email" data-error="invalid email" data-success="awesome" className="light-blue-text text-accent-2">Email</label>
         </div>
       </div>
 
        <div className="row">
         <div className="input-field col s12">
-          <input id="last_name" type="text" className="validate" />
+          <input id="last_name" name="address" type="text" className="validate" />
           <label htmlFor="last_name" className="light-blue-text text-accent-2">Street Address</label>
         </div>
       </div>
 
+        <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action" onClick={()=> window.location='/checkout'}>Continue
+          <i className="material-icons right">send</i>
+        </button>
+
+    </form>
+  </div>
+  </div>
+
+    );
+  }
+}
+
+const mapStateToProps = () => ({
+
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  submitNewUser: function (evt) {
+    evt.preventDefault();
+    console.log("inside submit new user")
+    let user = {
+      name: evt.target.name.value,
+      email: evt.target.email.value,
+      address: evt.target.address.value,
+      password: null
+    }
+    dispatch(createNewUser(user));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShippingForm);
+
+/*
       <div className="row">
         <div className="input-field col s4">
           <input id="last_name" type="text" className="validate" />
@@ -79,29 +113,4 @@ class ShippingForm extends Component {
           <label htmlFor="last_name" className="light-blue-text text-accent-2">ZIP</label>
         </div>
       </div>
-
-    </form>
-  </div>
-    <Link to="/checkout">
-      <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Continue
-        <i className="material-icons right">send</i>
-      </button>
-    </Link>
-  </div>
-
-    );
-  }
-}
-
-const mapStateToProps = () => ({
-
-});
-
-const mapDispatchToProps = () => ({
-
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShippingForm);
+*/
