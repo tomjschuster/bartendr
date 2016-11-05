@@ -11,6 +11,7 @@ import Login from './components/Login.jsx'
 import Root from './components/Root'
 import Home from './components/home'
 import SingleOrder from "./components/singleOrder";
+import Signup from "./components/signup";
 
 import {loadSingleProduct} from './reducers/selectedProduct';
 import {receiveCart, hardCodedData } from "./reducers/cart";
@@ -51,7 +52,7 @@ render (
         <Route path="/orderHistory" component={Root} />
         <Route path="/orderHistory/:orderId" component={Root} />
         <Route path="/cart" component={SingleOrder} />
-        <Route path="/signup" component={Root} />
+        <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/checkout" component={Root} />
         <IndexRoute component={Home} />
