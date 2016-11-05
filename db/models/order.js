@@ -5,7 +5,8 @@ const db = require('APP/db')
 
 const Order = db.define('order', {
   status: {
-    type: Sequelize.ENUM("created", "processing", "cancelled", "completed")
+    type: Sequelize.ENUM("created", "processing", "cancelled", "completed"),
+    defaultValue: "created"
   },
   ship_date: {
     type: Sequelize.DATE

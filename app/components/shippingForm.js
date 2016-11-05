@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Input, Collapsible, CollapsibleItem } from 'react-materialize';
+import { Input } from 'react-materialize';
+import { Link } from 'react-router';
 
 class ShippingForm extends Component {
   constructor(props) {
@@ -10,7 +11,24 @@ class ShippingForm extends Component {
   render() {
     let stateStrings = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY', 'AE', 'AA', 'AP'];
     return(
+      <div>
+        <div className="row">
+          <div className="col s12">
+            <br /><br />
+            <button className="center btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Login
+            <i className="material-icons right"></i>
+           </button>
+          </div>
+          <div className="col s12">
+            <br /><br />
+            <button className="center btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Sign Up
+            <i className="material-icons right"></i>
+           </button>
+          </div>
+        </div>
       <div className="row ">
+      <br /><br />
+      <h3>Continue as a Guest:</h3>
     <form className="col s12 ">
       <div className="row">
         <div className="input-field col s12">
@@ -63,6 +81,12 @@ class ShippingForm extends Component {
       </div>
 
     </form>
+  </div>
+    <Link to="/checkout">
+      <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Continue
+        <i className="material-icons right">send</i>
+      </button>
+    </Link>
   </div>
 
     );

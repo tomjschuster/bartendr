@@ -1,9 +1,11 @@
 $( document ).ready(function() {
-  $(".button-collapse").sideNav();
+  console.log("hello")
+  $('.modal1').openModal();
+
 });
 
 
-
+//  $(".button-collapse").sideNav();
   // // autocomplete not working yet
   // $('input.autocomplete').autocomplete({
   //   data: {

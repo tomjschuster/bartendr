@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { updateQuantity, removeCartItem } from '../reducers/cart.js';
 import store from '../store';
 import ShippingForm from './shippingForm';
+import { Input, Collapsible, CollapsibleItem } from 'react-materialize';
+import { Link } from 'react-router';
+
 //current sessions cart; not pulling data from model backend
 
 class SingleOrder extends Component {
@@ -20,7 +23,8 @@ class SingleOrder extends Component {
   }
 
   render() {
-    const { cart } = this.props;
+    console.log("STATE:", this.props)
+    const { cart, auth } = this.props;
     return(
       <div>
         <br />
@@ -72,19 +76,19 @@ class SingleOrder extends Component {
            </tbody>
          </table>
          <br></br>
-         <button className="right btn waves-effect light-blue accent-2" type="submit" name="action">Checkout
-          <i className="material-icons right">send</i>
-        </button>
-         <div>
-           <ShippingForm />
-         </div>
+          <Link to={auth ? "/checkout" : "/continue"}>
+            <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Checkout
+              <i className="material-icons right">send</i>
+            </button>
+          </Link>
        </div>
     );
   }
 }
 
-const mapStateToProps = ({cart}) => ({
-  cart: cart
+const mapStateToProps = ({cart, auth}) => ({
+  cart: cart,
+  auth: auth
 });
 
 const mapDispatchToProps = (dispatch) => ({
