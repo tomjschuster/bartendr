@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateQuantity, removeCartItem } from '../reducers/cart.js';
 import store from '../store';
+import ShippingForm from './shippingForm';
 //current sessions cart; not pulling data from model backend
 
 class SingleOrder extends Component {
@@ -74,6 +75,9 @@ class SingleOrder extends Component {
          <button className="right btn waves-effect light-blue accent-2" type="submit" name="action">Checkout
           <i className="material-icons right">send</i>
         </button>
+         <div>
+           <ShippingForm />
+         </div>
        </div>
     );
   }

@@ -1,6 +1,7 @@
 $( document ).ready(function() {
   $(".button-collapse").sideNav();
-})
+});
+
 
 
   // // autocomplete not working yet
