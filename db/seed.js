@@ -7,6 +7,12 @@ const seedUsers = () => db.Promise.map([
 
 const Category = db.model('category');
 
+const seedReviews = () => db.Promise.map([
+  {stars: 1, content: "This tastes terrible", user_id: 1, product_id: 235},
+  {stars: 5, content: "Much better the second time around", user_id: 1, product_id: 235},
+  {stars: 3, content: "My usual order was good", user_id: 2, product_id: 235}
+], review => db.model('review').create(review))
+
 const seedCategories = () => db.Promise.map([
   {id: 1, name: "Alcohol"},
 {id: 2, name: "Whiskey"},
@@ -95,7 +101,7 @@ const seedCategories = () => db.Promise.map([
 
 const seedProducts = () => db.Promise.map([
 {id: 233, name: "1800 Anejo Tequila", size: "750 ML", proof: 80, price: 38.95, inventory: 8, photoUrl: "/media/products/209991.jpg"},
-{id: 235, name: "1800 Coconut Tequila", size: "750 ML", proof: 70, price: 30.95, inventory: 86, photoUrl: "/media/products/1800_mainproductphotos_coconut_new.png"},
+{id: 235, name: "1800 Coconut Tequila", size: "750 ML", proof: 70, price: 30.95, inventory: 86, photoUrl: "/media/products/1800_mainproductphotos_coconut_new.png", description: "1800 Coconut Tequila is made from 100% Blue Agave Tequila and is triple distilled. It is infused with fresh coconut water for an amazingly smooth taste."},
 {id: 237, name: "1800 Reposado Tequila", size: "375 ML", proof: 80, price: 15.45, inventory: 10, photoUrl: "/media/products/1800_mainproductphotos_reposado_new_2.png"},
 {id: 238, name: "1800 Reposado Tequila", size: "750 ML", proof: 80, price: 30.95, inventory: 2, photoUrl: "/media/products/1800_mainproductphotos_reposado_new_2.png"},
 {id: 240, name: "1800 Select Silver", size: "750 ML", proof: 100, price: 29.95, inventory: 20, photoUrl: "/media/products/1800-Select-Silver-100-Proof.jpg"},
@@ -620,5 +626,7 @@ db.didSync
   .then(seedProducts)
   .then(products => console.log(`Seeded ${products.length} products OK`))
   .then(() => db.query(require('./seed_product_category_join.js')))
+  .then(seedReviews)
+  .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
   .catch(error => console.error(error))
   .finally(() => db.close())

@@ -20,6 +20,14 @@ const Review = db.define('review', {
   }
 
 }, {
+  // hooks: {
+  //   afterCreate: function(review) {
+  //     // console.log(typeof review.getDataValue('created_at'))
+  //     let dateStr = review.getDataValue('created_at').toString().slice(0, 10)
+  //     console.log(dateStr)
+  //     return review.setDataValue('created_at', dateStr);
+  //   }
+  // }
   // make a hook to set the date.
 
   // indexes: [{fields: ['email'], unique: true,}],
