@@ -10,7 +10,7 @@ import SingleProduct from "./components/singleProduct"
 import Login from './components/Login.jsx'
 import Root from './components/Root'
 import Home from './components/home'
-import SingleOrder from "./components/singleOrder";
+import Cart from "./components/cart";
 import Signup from "./components/signup";
 import ShippingForm from "./components/shippingForm";
 import OrderSummary from "./components/orderSummary";
@@ -53,7 +53,7 @@ render (
         <Route path="/products/:productId" component={SingleProduct} onEnter={onSingleProductEnter} />
         <Route path="/orderHistory" component={Root} />
         <Route path="/orderHistory/:orderId" component={Root} />
-        <Route path="/cart" component={SingleOrder} />
+        <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/continue" component={ShippingForm} />

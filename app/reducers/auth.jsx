@@ -41,13 +41,20 @@ export const whoami = () =>
         dispatch(authenticated(user))
       })
 
+
+// export const setCurrentUser = (user) =>
+//   dispatch =>
+
+
+
+/* THUNK */
 export const createNewUser = (user) =>
   dispatch =>
     axios.post("/api/users", user)
       .then(response => {
         console.log("response", response);
         if(response.status === 201) {
-          dispatch(login(user.email, user.password));
+          user.password && dispatch(login(user.email, user.password));
         } else
         {
           dispatch(newError(response));
