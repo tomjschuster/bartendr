@@ -48,9 +48,16 @@ const Product = db.define('product', {
 
     getterMethods :{
       avgStars: function(){
-         let reviews = this.getReviews();
-         let sum = reviews.reduce( (prev, curReview) => prev + curReview.stars, 0 );
-         return Math.floor(sum/reviews.length);
+        let final = this.getReviews()
+          .then(reviews => {
+            console.log("inside avgStars", reviews)
+             let sum = reviews.reduce( (prev, curReview) => {
+              return prev + curReview.stars
+              }, 0 );
+             console.log('sum', Math.floor(sum/reviews.length))
+              return Math.floor(sum/reviews.length);
+            })
+          return final;
       },
       numReviews: function(){
         return this.getReviews().length;
