@@ -1,6 +1,5 @@
 $( document ).ready(function() {
-  console.log("hello")
-  $('.modal1').openModal();
+   $(".button-collapse").sideNav();
 
 });
 
