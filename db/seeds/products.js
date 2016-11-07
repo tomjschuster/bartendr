@@ -272,7 +272,6 @@ module.exports = [
 {id: 271, name: "Grand Marnier Centenaire", size: "750 ML", proof: 80, price: 192, inventory: 43, photoUrl: "/media/products/Grand Marnier Centenaire.jpg"},
 {id: 272, name: "Grand Marnier Centcinquant", size: "750 ML", proof: 80, price: 208.5, inventory: 28, photoUrl: "/media/products/Grand Marnier Centcinquant.jpg"},
 {id: 273, name: "Dekuyper Peppermint Schnapps", size: "200 ML", proof: 100, price: 4.65, inventory: 21, photoUrl: "/media/products/Dekuyper Peppermint Schnapps.jpg"},
-{id: 274, name: "Grand Marnier", size: "200 ML", proof: 80, price: 13.75, inventory: 3, photoUrl: "/media/products/Grand Marnier.jpg"},
 {id: 275, name: "Jameson Irish Whiskey", size: "375 ML", proof: 80, price: 17.95, inventory: 6, photoUrl: "/media/products/Jameson Irish Whiskey.jpg"},
 {id: 276, name: "Remy Martin VSOP", size: "375 ML", proof: 80, price: 22.95, inventory: 14, photoUrl: "/media/products/Remy Martin VSOP.jpg"},
 {id: 277, name: "Tanqueray Gin", size: "200 ML", proof: 94.6, price: 7.7, inventory: 0, photoUrl: "/media/products/Tanqueray Gin.jpg"},
