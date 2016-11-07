@@ -16,7 +16,7 @@ class SingleProduct extends Component {
       <div className="row" key={id}>
         <h3>{name}</h3>
         <div>
-        <div className="col s12 m6"> <img src={photoUrl} />
+        <div className="col s12 m6"> <img src={photoUrl || '/media/default-bottle.jpg'} />
         </div>
         <div className="col s12 m6">
           <ul>
