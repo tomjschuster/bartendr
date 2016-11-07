@@ -16,49 +16,35 @@ class ShippingForm extends Component {
         <div className="row">
           <div className="col s12">
             <br /><br />
+
+            <Link to="/login">
             <button className="center btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Login
             <i className="material-icons right"></i>
            </button>
+           </Link>
+
           </div>
+
           <div className="col s12">
             <br /><br />
+            <Link to="/signup">
             <button className="center btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Sign Up
             <i className="material-icons right"></i>
            </button>
+           </Link>
+          </div>
+
+          <div className="col s12">
+            <br /><br />
+            <Link to="/checkout">
+            <button className="center btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Continue as guest
+            <i className="material-icons right"></i>
+           </button>
+           </Link>
           </div>
         </div>
-      <div className="row ">
-      <br /><br />
-      <h3>Continue as a Guest:</h3>
 
-    <form className="col s12" onSubmit={this.props.submitNewUser}>
-      <div className="row">
-        <div className="input-field col s12">
-          <input id="first_name" name="name" type="text" className="validate" />
-          <label htmlFor="first_name" className="light-blue-text text-accent-2">Name</label>
-        </div>
-      </div>
 
-      <div className="row">
-        <div className="input-field col s12">
-          <input id="email" name="email" type="email" className="validate" />
-          <label htmlFor="email" data-error="invalid email" data-success="awesome" className="light-blue-text text-accent-2">Email</label>
-        </div>
-      </div>
-
-       <div className="row">
-        <div className="input-field col s12">
-          <input id="last_name" name="address" type="text" className="validate" />
-          <label htmlFor="last_name" className="light-blue-text text-accent-2">Street Address</label>
-        </div>
-      </div>
-
-        <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action" onClick={()=> window.location='/checkout'}>Continue
-          <i className="material-icons right">send</i>
-        </button>
-
-    </form>
-  </div>
   </div>
 
     );
