@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Typeahead } from 'react-typeahead';
 
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.onOptionSelected = this.onOptionSelected.bind(this);
+  }
+
+  displayOption(option) {
+    return option.type === 'product' ?
+      option.name + " (" + option.size + ")" :
+      option.name;
+  }
+
+  onOptionSelected(option) {
+    if (option.type === 'product') {
+      this.props.router.push(`/products/${option.id}`);
+    } else if (option.type === 'category') {
+      this.props.router.push(`/products`);
+    }
   }
 
   render() {
-    return(
+    let { displayOption, onOptionSelected } = this;
+    let { options } = this.props;
+    return (
       <div>
         <br/>
         <br/>
@@ -23,9 +41,13 @@ class Home extends Component {
               <div className="input-field col s12">
                 <i className="material-icons">search
                 </i>
-                <input type="text" id="autocomplete-input" className="autocomplete">
-                </input>
-                <label for="autocomplete-input"></label>
+                <Typeahead
+                  options={options}
+                  maxVisible={10}
+                  displayOption={displayOption}
+                  filterOption='name'
+                  onOptionSelected={onOptionSelected}
+                />
               </div>
             </div>
           </div>
@@ -36,9 +58,19 @@ class Home extends Component {
 }
 
 
-const mapStateToProps = () => ({
-
-});
+const mapStateToProps = ({allProducts, allCategories}) => {
+  let products = allProducts.map(product => ({
+    type: 'product',
+    id: product.id,
+    name: product.name,
+    size: product.size
+  }));
+  let categories = allCategories.map(category => ({
+    type: 'category',
+    name: category.name
+  }))
+  return { options: products.concat(categories) }
+};
 
 const mapDispatchToProps = () => ({
 
