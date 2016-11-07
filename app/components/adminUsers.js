@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import {createNewUser} from "../reducers/auth.jsx";
 
 import axios from 'axios';
 
@@ -78,8 +77,8 @@ export default class AdminUsers extends Component {
     return(
       <div>
         <br />
-        <h2>God Mode (Admin)</h2>
-        <h4>Current Status: {`${this.state.status}`}</h4>
+        <h2>God Mode: Users (Admin)</h2>
+        <h4>Current Status: { this.state.status ? `${this.state.status}` : <span>Normal</span>}</h4>
           {
 
               this.state.users && this.state.users.map( user =>
