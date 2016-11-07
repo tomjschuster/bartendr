@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {loadSingleProduct} from '../reducers/selectedProduct';
-import { times } from 'lodash';
+import { times, find } from 'lodash'; //N
+import { addToCart, updateQuantity } from '../reducers/cart'; //N
+
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class SingleProduct extends Component {
 
   render() {
     const { id, name, price, photoUrl, description, reviews } =this.props.selectedProduct;
+    const { cart, updateQuantity, selectedProduct, add } = this.props; //N
      return(
       <div className="row" key={id}>
         <h3>{name}</h3>
@@ -30,7 +33,11 @@ class SingleProduct extends Component {
                   </div>
                 </li>
                 <li>
-                    <a className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
+                    <a onClick={() => {
+                      Materialize.toast(`${selectedProduct.name} added to cart`, 4000)
+                      _.find(cart, item => item.product.id === selectedProduct.id) ?
+                 updateQuantity(_.find(cart, item => item.product.id === selectedProduct.id).quantity + 1, selectedProduct.id) : add(selectedProduct)} }
+                 className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
                 </li>
                 <br />
                 <br />
@@ -67,12 +74,14 @@ class SingleProduct extends Component {
   }
 }
 
-const mapStateToProps = ({selectedProduct}) => ({
-  selectedProduct
+const mapStateToProps = ({selectedProduct, cart}) => ({
+  selectedProduct,
+  cart
 });
 
-const mapDispatchToProps = () => ({
-
+const mapDispatchToProps = (dispatch) => ({
+  add: product => dispatch(addToCart(product)), // N
+  updateQuantity: (newQuantity, productId) => dispatch(updateQuantity(newQuantity, productId)) // N
 });
 
 export default connect(

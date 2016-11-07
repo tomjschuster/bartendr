@@ -29,7 +29,8 @@ export const hardCodedData = [
 //   return cart.find(item => item.product && item.product.id === id)
 // }
 
-const initialState = hardCodedData;
+const initialState = []; // N
+//hardCodedData;
 // [
 //   { purchase_price: 0,
 //     quantity: 0,
@@ -60,9 +61,9 @@ export const receiveCart = (cart) => ({
   cart: cart
 });
 
-export const addToCart = (productId) => ({
+export const addToCart = (product) => ({
   type: ADD_TO_CART,
-  productId: productId
+  product: product
 });
 
 
@@ -95,8 +96,11 @@ export default (state = initialState, action) => {
       localStorage.cart = JSON.stringify(finalCart);
       return finalCart;
     case ADD_TO_CART:
-      var cart = [...state];
-      // needs further fetching with single product
+      // N
+      // product is attached to action, get its price
+      // by default every time a product is added, its quantity is 1
+      var cartItem ={ product: action.product, purchase_price: action.product.price, quantity: 1} ;
+      var cart = [...state, cartItem];
       localStorage.cart = JSON.stringify(cart);
       return cart;
     case RECEIVE_CART:
