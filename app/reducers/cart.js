@@ -43,6 +43,7 @@ const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
 const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 const ADD_TO_CART = 'ADD_TO_CART';
 const RECEIVE_CART = "RECEIVE_CART";
+const CLEAR_CART = "CLEAR_CART";
 
 /*----------  ACTION CREATORS  ----------*/
 export const updateQuantity = (newQuantity, productId) => ({
@@ -64,6 +65,11 @@ export const receiveCart = (cart) => ({
 export const addToCart = (product) => ({
   type: ADD_TO_CART,
   product: product
+});
+
+export const clearCart = () => ({
+  type: CLEAR_CART,
+  cart: []
 });
 
 
@@ -104,6 +110,9 @@ export default (state = initialState, action) => {
       localStorage.cart = JSON.stringify(cart);
       return cart;
     case RECEIVE_CART:
+      return action.cart;
+     case CLEAR_CART:
+      localStorage.cart = JSON.stringify(action.cart);
       return action.cart;
     default:
       return state;
