@@ -31,3 +31,7 @@
     clear:left;
   }
 }
+
+#product-loader {
+  margin: 0 auto;
+}
