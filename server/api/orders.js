@@ -13,14 +13,17 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   Order.create(req.body)
-  .then( order => res.json(order))
+  .then( order => {
+    console.log("Are you correct?", order)
+    res.status(201).json(order)
+  })
   .catch(next);
 })
 
 
 router.post('/:id', (req, res, next) => {
   OrderItem.create(req.body)
-  .then( orderIt => res.json(orderIt))
+  .then( orderIt => res.status(201).json(orderIt))
   .catch(next);
 })
 // make a post to /orders

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { clearCart } from './cart';
+import {newError} from "./error";
 
 /*----------  INITIAL STATE  ----------*/
 const initialState =
@@ -21,8 +22,8 @@ export const receiveStationStatus = (cart, user) => ({
 /*----------  THUNKS  ----------*/
 
 export const unauthCreateOrderItems = (orderItem) =>
-  dispatch =>
-    axios.post(`/api/orders/${orderItem.order_id}`, orderItem)
+  dispatch => {
+    return axios.post(`/api/orders/${orderItem.order_id}`, orderItem)
       .then(response => {
         console.log("response", response);
         if(response.status === 201) {
@@ -38,18 +39,14 @@ export const unauthCreateOrderItems = (orderItem) =>
           dispatch(newError(error));
           // console.log(error.message);
          });
-
+}
 export const unauthCreateOrder = (order,cart) =>
   dispatch =>
     axios.post("/api/orders", order)
       .then(response => {
         console.log("response", response);
         if(response.status === 201) {
-          //response.data.id --> newly created orderid
-          // cart.product.id --> prod id
-          //cart.purchase_price
-          //cart.quantity
-
+          console.log("responsedata", response.data)
           cart.forEach( (cartItem) => {
 
               var passObj = {
@@ -76,9 +73,8 @@ export const unauthCreateOrder = (order,cart) =>
          });
 
 // this is the guy who goes to comcponents to call
-export const unauthStart = (user,cart) =>
+export const unauthStart = (user, cart) =>
   dispatch => {
-    console.log("UNAUTH STARTTTT is hit !!!!!!!!!");
      return axios.post("/api/users", user)
       .then(response => {
         console.log("response", response);
@@ -89,7 +85,7 @@ export const unauthStart = (user,cart) =>
             ship_address: response.data.address,
             user_id: response.data.id
           }
-          dispatch(unauthCreateOrder(passObj,cart));
+          dispatch(unauthCreateOrder(passObj, cart));
         } else
         {
           dispatch(newError(response));
@@ -101,9 +97,16 @@ export const unauthStart = (user,cart) =>
           dispatch(newError(error));
           // console.log(error.message);
          });
+  }
 
-
-
+export const authStart = (user, userId, cart) =>
+  dispatch => {
+    let passObj = {
+      ship_name: user.name,
+      ship_address: user.address,
+      user_id: userId
+    }
+    dispatch(unauthCreateOrder(passObj, cart))
   }
 
 
