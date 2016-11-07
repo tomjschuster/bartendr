@@ -12,7 +12,7 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCategory: null,
+      // currentCategory: null,
       maxPrice: null,
       minStars: null,
       productList: props.allProducts || [],
@@ -28,13 +28,16 @@ class Products extends Component {
   }
 
   updateProductList() {
+    // console.log('updating list');
     let { allProducts } = this.props;
     let { currentCategory, maxPrice, minStars, productsShown } = this.state;
+    // console.log(currentCategory, allProducts)
     let products = allProducts.filter(product =>
       product.inventory
         && (!currentCategory || find(product.categories, {id: currentCategory}))
         && (!maxPrice || product.price <= maxPrice)
         && (!minStars || Math.round(product.avgStars) >= minStars));
+    // console.log(products);
     let productList = products.filter((product, idx) => idx < productsShown);
     let productsFound = products.length;
     let hasMore = productsShown < products.length;
@@ -75,8 +78,14 @@ class Products extends Component {
           || prevState.productsShown !== productsShown
           || prevState.productsFound !== productsFound
           || prevProps.allProducts !== allProducts) {
+      // console.log(prevState, this.state);
       this.updateProductList();
     }
+  }
+
+  componentDidMount() {
+    this.setState(this.props.router.location.state);
+    this.updateProductList();
   }
 
   render() {

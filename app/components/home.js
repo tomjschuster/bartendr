@@ -10,15 +10,15 @@ class Home extends Component {
 
   displayOption(option) {
     return option.type === 'product' ?
-      option.name + " (" + option.size + ")" :
-      option.name;
+      option.name + ' (' + option.size + ')' :
+      option.name + ' (category)';
   }
 
   onOptionSelected(option) {
     if (option.type === 'product') {
       this.props.router.push(`/products/${option.id}`);
     } else if (option.type === 'category') {
-      this.props.router.push(`/products`);
+      this.props.router.push({pathname: '/products', query: {}, state: { currentCategory: option.id}});
     }
   }
 
@@ -67,6 +67,7 @@ const mapStateToProps = ({allProducts, allCategories}) => {
   }));
   let categories = allCategories.map(category => ({
     type: 'category',
+    id: category.id,
     name: category.name
   }))
   return { options: products.concat(categories) }
