@@ -26,7 +26,7 @@ class FilterBar extends Component {
     let { allCategories, setCurrentCategory, setMaxPrice, setMinStars } = this.props;
     return (
       <Collapsible>
-        <CollapsibleItem header='Filter' icon='filter_drama'>
+        <CollapsibleItem header='Filter' icon='clear_all'>
           <div className='row'>
             <div className='col s12 m4'>
             <Input s={12} type='select' defaultValue={0} onChange={evt => setCurrentCategory(Number(evt.target.value))}>
