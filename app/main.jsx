@@ -3,23 +3,20 @@ import React from 'react';
 import {render} from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory, Route, IndexRoute, IndexRedirect } from 'react-router';
-import App from "./components/app";
+import App from './components/app';
 
-import Products from "./components/products"
-import SingleProduct from "./components/singleProduct"
-import Login from './components/Login.jsx'
-import Root from './components/Root'
-import Home from './components/home'
-import Cart from "./components/cart";
-import Signup from "./components/signup";
-import ShippingForm from "./components/shippingForm";
-import OrderSummary from "./components/orderSummary";
-
-import {loadSingleProduct} from './reducers/selectedProduct';
-import {receiveCart, hardCodedData } from "./reducers/cart";
-
+import Products from './components/products';
+import SingleProduct from './components/singleProduct';
+import Login from './components/Login.jsx';
+import Root from './components/Root';
+import Home from './components/home';
+import Cart from './components/cart';
+import Signup from './components/signup';
+import ShippingForm from './components/shippingForm';
+import OrderSummary from './components/orderSummary';
 
 import store from './store';
+import { onAppEnter, onSingleProductEnter } from './onenter-hooks';
 
 // BONES UPDATE: ADDED Login.jsx
 // render (
@@ -29,23 +26,8 @@ import store from './store';
 //       <Route path="/login" component={Login} />
 //     </Router>
 //   </Provider>
-const onSingleProductEnter = function(nextRouterState){
-  const productId = nextRouterState.params.productId;
-  const thunk = loadSingleProduct(productId);
-  store.dispatch(thunk);
 
-}
-
-const onAppEnter = function () {
-  let cart = localStorage.cart && JSON.parse(localStorage.cart)
-  if(cart) {
-    store.dispatch(receiveCart(cart));
-  } else {
-    localStorage.cart = JSON.stringify(hardCodedData);
-  }
-}
-
-render (
+render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={onAppEnter}>

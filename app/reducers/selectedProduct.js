@@ -1,13 +1,11 @@
 import axios from 'axios';
+import { convertProduct } from '../converters';
 
 /*----------  INITIAL STATE  ----------*/
-const initialState =
-{
-
-};
+const initialState = {};
 
 /*----------  ACTION TYPES  ----------*/
-const RECEIVE_SINGLE_PRODUCT = "RECEIVE_SINGLE_PRODUCT";
+const RECEIVE_SINGLE_PRODUCT = 'RECEIVE_SINGLE_PRODUCT';
 // const SET_SELECTED_PRODUCT = 'SET_SELECTED_PRODUCT';
 
 
@@ -24,13 +22,11 @@ export const receiveSingleProduct = selectedProduct => ({
 // });
 
 
-
 /*----------  THUNKS  ----------*/
 export const loadSingleProduct = (id) => dispatch => {
-  console.log("TRYING TO LOAD SINGLE PRODUCT");
   axios.get(`/api/products/${id}`)
    .then( function(res) {
-    dispatch(receiveSingleProduct(res.data));
+    dispatch(receiveSingleProduct(convertProduct(res.data)));
    })
    .catch( (err) => console.error(err) );
 

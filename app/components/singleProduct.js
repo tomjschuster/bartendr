@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {loadSingleProduct} from '../reducers/selectedProduct';
-import { times, find } from 'lodash'; //N
+import _, { times, find } from 'lodash'; //N
 import { addToCart, updateQuantity } from '../reducers/cart'; //N
 
 
@@ -11,9 +10,9 @@ class SingleProduct extends Component {
   }
 
   render() {
-    const { id, name, price, photoUrl, description, reviews } =this.props.selectedProduct;
+    const { id, name, price, photoUrl, description, reviews, avgStars } = this.props.selectedProduct;
     const { cart, updateQuantity, selectedProduct, add } = this.props; //N
-     return(
+     return (
       <div className="row" key={id}>
         <h3>{name}</h3>
         <div>
@@ -25,16 +24,12 @@ class SingleProduct extends Component {
                 <li>{`$${price}`}</li>
                 <li>
                   <div className="stars">
-                    <i className="tiny material-icons">grade</i>
-                    <i className="tiny material-icons">grade</i>
-                    <i className="tiny material-icons">grade</i>
-                    <i className="tiny material-icons">grade</i>
-                    <i className="tiny material-icons">grade</i>
+                    { times(Math.round(avgStars), idx => <i key={idx} className="tiny material-icons">grade</i>)}
                   </div>
                 </li>
                 <li>
                     <a onClick={() => {
-                      Materialize.toast(`${selectedProduct.name} added to cart`, 4000)
+                      Materialize.toast(`${selectedProduct.name} added to cart`, 4000);
                       _.find(cart, item => item.product.id === selectedProduct.id) ?
                  updateQuantity(_.find(cart, item => item.product.id === selectedProduct.id).quantity + 1, selectedProduct.id) : add(selectedProduct)} }
                  className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
@@ -45,7 +40,7 @@ class SingleProduct extends Component {
               </ul>
         </div>
         </div>
-        <div className="col s12">
+        <div id="reviews" className="col s12">
           <h2>Reviews</h2>
           <hr />
           {

@@ -11,8 +11,7 @@ class OrderSummary extends Component {
   }
 
   render() {
-    console.log("STATE!", this.props)
-    return(
+    return (
       <div>
         <h4>Order Summary:</h4>
         <SingleOrder />
