@@ -4,7 +4,7 @@ import {loadAllProducts } from '../reducers/allProducts'
 import {loadAllCategories } from '../reducers/allCategories'
 import FilterBar from './filterBar';
 import ProductItem from './productItem';
-import _ from 'lodash';
+import { find } from 'lodash';
 
 //export default
 class Products extends Component {
@@ -12,48 +12,47 @@ class Products extends Component {
     super(props);
     this.state = {
       currentCategory: null,
-      maxPrice: null
-    }
+      maxPrice: null,
+      minStars: null
+    };
     this.setCurrentCategory = this.setCurrentCategory.bind(this);
     this.setMaxPrice = this.setMaxPrice.bind(this);
+    this.setMinStars = this.setMinStars.bind(this);
   }
 
-  addCategory(category) {
-    let categories = [...this.state.categories, category]
-    this.setState({categories});
+  setCurrentCategory(currentCategory) {
+    this.setState({currentCategory})
   }
 
-  setCurrentCategory(id) {
-    this.setState({currentCategory: id})
-  }
-  setMaxPrice(max) {
-    this.setState({maxPrice: max})
+  setMaxPrice(maxPrice) {
+    this.setState({maxPrice})
   }
 
-  componentDidMount() {
-    this.props.loadAllProducts();
-    this.props.loadAllCategories();
+  setMinStars(minStars) {
+    this.setState({minStars})
   }
 
   render() {
     let {allProducts} = this.props;
-    let { currentCategory, maxPrice } = this.state;
+    let { currentCategory, maxPrice, minStars } = this.state;
     return(
       <div>
         <div className="row">
           <FilterBar setCurrentCategory={this.setCurrentCategory}
-                     setMaxPrice={this.setMaxPrice}/>
+                     setMaxPrice={this.setMaxPrice}
+                     setMinStars={this.setMinStars}/>
         </div>
-        <div className="row">
+        <div className="row all-products">
           { allProducts.filter((prod) =>
               prod.inventory &&
-                (!currentCategory || _.find(prod.categories, {id: currentCategory})) &&
-                (!maxPrice || prod.price <= maxPrice)
+                (!currentCategory || find(prod.categories, {id: currentCategory})) &&
+                (!maxPrice || prod.price <= maxPrice) &&
+                (!minStars || Math.round(prod.avgStars) >= minStars)
                 )
             .map(function(product) {
             return (
-              <div key={product.id} className="col s12 m6 l4">
-              <ProductItem product={product} />
+              <div key={product.id} className="product-item col s12 m6 l4">
+                <ProductItem product={product} />
               </div>
                     );
           })}

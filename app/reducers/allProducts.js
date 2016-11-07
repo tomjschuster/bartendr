@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { convertProduct } from '../converters';
+
 /*----------  INITIAL STATE  ----------*/
 const initialState = [];
 
@@ -15,7 +17,8 @@ export const receiveAllProducts = products => ({
 export const loadAllProducts = () => dispatch => {
    axios.get('/api/products')
    .then( function(res) {
-    dispatch(receiveAllProducts(res.data))
+    let products = res.data.map(product => convertProduct(product));
+    dispatch(receiveAllProducts(products));
    })
    .catch( (err) => console.error(err) );
 

@@ -47,14 +47,7 @@ const Product = db.define('product', {
 }, {
 
     getterMethods :{
-      avgStars: function(){
-         let reviews = this.getReviews();
-         let sum = reviews.reduce( (prev, curReview) => prev + curReview.stars, 0 );
-         return Math.floor(sum/reviews.length);
-      },
-      numReviews: function(){
-        return this.getReviews().length;
-      }
+
     }
   // indexes: [{fields: ['email'], unique: true,}],
   // hooks: {

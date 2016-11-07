@@ -16,11 +16,8 @@ import ShippingForm from "./components/shippingForm";
 import OrderSummary from "./components/orderSummary";
 import Review from "./components/review";
 
-import {loadSingleProduct} from './reducers/selectedProduct';
-import {receiveCart, hardCodedData } from "./reducers/cart";
-
-
 import store from './store';
+import { onAppEnter, onSingleProductEnter } from './onenter-hooks';
 
 // BONES UPDATE: ADDED Login.jsx
 // render (
@@ -30,23 +27,8 @@ import store from './store';
 //       <Route path="/login" component={Login} />
 //     </Router>
 //   </Provider>
-const onSingleProductEnter = function(nextRouterState){
-  const productId = nextRouterState.params.productId;
-  const thunk = loadSingleProduct(productId);
-  store.dispatch(thunk);
 
-}
-
-const onAppEnter = function () {
-  let cart = localStorage.cart && JSON.parse(localStorage.cart)
-  if(cart) {
-    store.dispatch(receiveCart(cart));
-  } else {
-    localStorage.cart = JSON.stringify(hardCodedData);
-  }
-}
-
-render (
+render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={onAppEnter}>

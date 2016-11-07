@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { loadSingleProduct} from '../reducers/selectedProduct';
 import { addToCart, updateQuantity } from '../reducers/cart';
-import { find } from 'lodash';
+import _, { times, find } from 'lodash';
 
 class ProductItem extends Component {
   constructor(props) {
@@ -11,25 +11,31 @@ class ProductItem extends Component {
   }
 
   render() {
-    let { id, name, photoUrl, price } = this.props.product;
-    let { cart, add, updateQuantity, product} = this.props; // N
-    return(
+    let { id,
+          name,
+          photoUrl,
+          price,
+          size,
+          avgStars,
+          numReviews } = this.props.product;
+    let { cart,
+          add,
+          updateQuantity,
+          product } = this.props; // N
+    return (
           <div className="card">
             <div className="card-image">
-              <Link to={`/products/${id}`}><img src={photoUrl} className="product-img"/></Link>
+              <Link to={`/products/${id}`}><img src={photoUrl ||  '/media/default-bottle.jpg'} className="product-img"/></Link>
               <span className="card-title"></span>
             </div>
             <div className="card-content">
               <ul>
-                <li>{name}</li>
+                <li><Link to={`/products/${id}`}>{name}&nbsp;-&nbsp;{size}</Link></li>
                 <li>{`$${price}`}</li>
                 <li>
                   <div className="stars">
-                    <i className="tiny material-icons">grade</i>
-                    <i className="tiny material-icons">grade</i>
-                    <i className="tiny material-icons">grade</i>
-                    <i className="tiny material-icons">grade</i>
-                    <i className="tiny material-icons">grade</i>
+                    { times(Math.round(avgStars), idx => <i key={idx} className="tiny material-icons">grade</i>)}
+                    &nbsp;(<Link to={`/products/${id}#reviews`}>{numReviews}&nbsp;Reviews</Link>)
                   </div>
                 </li>
               </ul>
@@ -52,8 +58,7 @@ const mapStateToProps = ({cart}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadSingleProduct: product => {console.log("inside dispatch") ;
-                       dispatch(loadSingleProduct(product) )},
+  loadSingleProduct: product => dispatch(loadSingleProduct(product)),
   add: product => dispatch(addToCart(product)), // N
   updateQuantity: (newQuantity, productId) => dispatch(updateQuantity(newQuantity, productId)) // N
 });
