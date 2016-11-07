@@ -14,6 +14,7 @@ import Cart from "./components/cart";
 import Signup from "./components/signup";
 import ShippingForm from "./components/shippingForm";
 import OrderSummary from "./components/orderSummary";
+import AdminUsers from "./components/adminUsers";
 
 import {loadSingleProduct} from './reducers/selectedProduct';
 import {receiveCart, hardCodedData } from "./reducers/cart";
@@ -58,6 +59,7 @@ render (
         <Route path="/login" component={Login} />
         <Route path="/continue" component={ShippingForm} />
         <Route path="/checkout" component={OrderSummary} />
+        <Route path="/adminUsers" component={AdminUsers} />
         <IndexRoute component={Home} />
       </Route>
     </Router>
