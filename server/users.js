@@ -29,7 +29,7 @@ userResource.delete DELETE  /users/:id  Delete a user
 
 const {mustBeLoggedIn, selfOnlyOrAdmin, adminOnly, forbidden} = epilogue.filters;
 users.delete.auth(mustBeLoggedIn);
-users.delete.auth(selfOnlyOrAdmin);
+users.delete.auth(adminOnly);
 users.list.auth(adminOnly);
 users.read.auth(selfOnlyOrAdmin);
 users.update.auth(adminOnly);

@@ -12,6 +12,8 @@ export default class AdminUsers extends Component {
       users: [],
       status: null
     }
+    this.updateUser = this.updateUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   componentDidMount() {
@@ -19,29 +21,57 @@ export default class AdminUsers extends Component {
     const setState2 = this.setState.bind(this);
     axios.get('/api/users')
     .then( function(res) {
-      console.log("res.data", res.data)
+      // console.log("res.data", res.data)
       setState2({users: res.data});
     })
     .catch( (err) => console.error(err) );
   }
 
+  // Inside onSubmit:  (e) => this.props.updateUser(e, user.id)
+
+  deleteUser(userId) {
+    // console.log("updateUser is RUNNING")
+    const setState2 = this.setState.bind(this);
+
+     // console.log("evt", evt);
+     // console.log(`/api/users/${userId}`);
+     // console.log("userInfo", userInfo)
+    axios.delete(`/api/users/${userId}`)
+    .then( function(res) {
+      console.log("res", res);
+      setState2({status: "Delete Status: " + res.data.status + " " + res.data.status.text})
+
+      return axios.get('/api/users');
+    })
+    .then( function(res) {
+        // console.log("res.data", res.data)
+      setState2({users: res.data});
+    })
+    .catch( (err) => console.log(err) );
+
+  }
+
   updateUser(evt, userId) {
+     // console.log("updateUser is RUNNING")
      const setState2 = this.setState.bind(this);
 
      var userInfo = {
-      name: evt.target.name,
-      email: evt.target.email,
-      address: evt.target.address,
-      isAdmin: evet.target.isAdmin
+      name: evt.target.name.value,
+      email: evt.target.email.value,
+      address: evt.target.address.value,
+      isAdmin: evt.target.isAdmin.value
      }
      evt.preventDefault();
+     // console.log("evt", evt);
+     // console.log(`/api/users/${userId}`);
+     // console.log("userInfo", userInfo)
      axios.put(`/api/users/${userId}`, userInfo)
     .then( function(res) {
-      console.log("res.data", res.data)
-      setState2({status: res.data})
+      // console.log("res.data", res.data)
+      setState2({users: res.data, status: "Update Status: " + res.data.status + " " + res.data.status.text})
       ;
     })
-    .catch( (err) => console.error(err) );
+    .catch( (err) => console.log(err) );
   }
 
   render() {
@@ -50,38 +80,32 @@ export default class AdminUsers extends Component {
         <br />
         <h2>God Mode (Admin)</h2>
         <h4>Current Status: {`${this.state.status}`}</h4>
-        <table className="responsive-table highlight">
-          <thead>
-            <tr>
-              <th data-field="id">User ID  / Name  / Email  / Address  / Admin Status </th>
-              <th></th>
-            </tr>
-          </thead>
+          {
 
-          <tbody>
-            {
               this.state.users && this.state.users.map( user =>
                 (
-                  <tr key={user.id} >
-                    <form onSubmit={(e) => this.props.updateUser(e, user.id)}>
-                      <td>{user.id}</td>
-                      <td><input name="name" type="text" placeholder="Name" defaultValue={`${user.name}`}/></td>
-                      <td><input name="email" type="text" placeholder="Name" defaultValue={`${user.email}`}/></td>
-                      <td><input name="address" type="text" placeholder="Name" defaultValue={`${user.address}`}/></td>
-                      <td><input name="isAdmin" type="text" placeholder="Name" defaultValue={`${user.isAdmin}`}/></td>
-                      <td>
+                  <div className="row" key={user.id} >
+
+                    <form onSubmit={ (evt) => this.updateUser(evt, user.id)}>
+                    {user.id}
+                      <input name="name" type="text" placeholder="Name" defaultValue={`${user.name}`}/>
+                      <input name="email" type="text" placeholder="Email" defaultValue={`${user.email}`}/>
+                      <input name="address" type="text" placeholder="Address" defaultValue={`${user.address}`}/>
+                      <input name="isAdmin" type="text" id="myCheckbox" placeholder="Admin Status" defaultValue={`${user.isAdmin}`}/>
+
                         <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Update
                           <i className="material-icons right">send</i>
                         </button>
-                      </td>
-                   </form>
-                 </tr>
+                    </form>
+                    <button onClick={(e) => this.deleteUser(user.id)} className="right btn waves-effect light-blue accent-2 modal-trigger" type="button" name="action">Delete
+                      <i className="material-icons right">send</i>
+                    </button>
+                 </div>
                 ))
-             }
-           </tbody>
-         </table>
-
-
+            }
+            {
+              this.state.status && Materialize.toast(this.state.status, 8000)
+            }
       </div>
 
     );
