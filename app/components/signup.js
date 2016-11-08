@@ -18,8 +18,8 @@ class Signup extends Component {
             <div className="col s6">
               <table className="table">
                   <tr>
-                    <td><Link to="/products"><button style={{width: '100%', maxWidth: '250px'}}  className="light-blue accent-2 btn">Keep Shopping</button></Link></td>
-                    <td><Link to="/cart"><button style={{width: '100%', maxWidth: '250px'}} className="light-blue accent-2 btn">Go to Cart</button></Link></td>
+                    <td><Link to="/products"><button style={{width: '100%', maxWidth: '250px'}} className="btn">Keep Shopping</button></Link></td>
+                    <td><Link to="/cart"><button style={{width: '100%', maxWidth: '250px'}} className="btn">Go to Cart</button></Link></td>
                   </tr>
               </table>
             </div>
@@ -40,7 +40,7 @@ class Signup extends Component {
                 <input name="address" rows="4" placeholder="Address" />
                 <input name="password" type="password" placeholder="Password" required/>
                 <input name="password_confirmation" type="password" placeholder="Confirm Password" required/>
-                <button type="submit" className="light-blue accent-2 btn">Sign Up</button>
+                <button type="submit" className="btn">Sign Up</button>
               </form>
             </div>
         )}

@@ -29,10 +29,6 @@ class Cart extends Component {
     return(
       <div>
         <br />
-        {
-          cart.length ? <img src="/media/your_cart_blue.png" height="50px"/> : <div></div>
-        }
-        <br />
         <SingleOrder />
         <br></br>
         {
