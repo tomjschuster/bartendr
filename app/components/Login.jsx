@@ -8,9 +8,10 @@ export const Login = ({ login, auth }) => {return auth ?
         </div>
         <div className="col s6">
           <table className="table">
+              <br />
               <tr>
-                <td><Link to="/products"><button style={{width: '100%', maxWidth: '250px'}} className="btn">Keep Shopping</button></Link></td>
-                <td><Link to="/cart"><button style={{width: '100%', maxWidth: '250px'}} className="btn">Go to Cart</button></Link></td>
+                <td><Link to="/products"><button style={{width: '100%', maxWidth: '250px'}} className="light-blue accent-2 btn">Keep Shopping</button></Link></td>
+                <td><Link to="/cart"><button style={{width: '100%', maxWidth: '250px'}} className="light-blue accent-2 btn">Go to Cart</button></Link></td>
               </tr>
           </table>
         </div>
@@ -25,7 +26,7 @@ export const Login = ({ login, auth }) => {return auth ?
       <h3>Login</h3>
       <input name="username" placeholder="Email"/>
       <input name="password" placeholder="Password" type="password" />
-      <input className="btn" type="submit" value="Login" />&nbsp;&nbsp;OR&nbsp;&nbsp;<Link to="/signup"><input className="btn" type="submit" value="Signup" /></Link>
+      <input className="light-blue accent-2 btn" type="submit" value="Login" />&nbsp;&nbsp;OR&nbsp;&nbsp;<Link to="/signup"><input className="light-blue accent-2 btn" type="submit" value="Signup" /></Link>
     </form>)
 }
 

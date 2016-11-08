@@ -26,10 +26,11 @@ class SingleOrder extends Component {
     console.log("STATE:", this.props)
     const { cart, auth } = this.props;
     return(
-      <div>
-        <br />
-        <img src="/media/your_cart_blue.png" height="50px"/>
-        <table className="responsive-table striped">
+
+        cart.length ? (
+        <div>
+          <br />
+          <table className="responsive-table striped">
            <thead>
              <tr>
                  <th data-field="id">Product</th>
@@ -39,9 +40,6 @@ class SingleOrder extends Component {
                  <th data-field="remove-btn"></th>
              </tr>
            </thead>
-          {
-            cart.length ? <h2></h2> : <img src="/media/cart_empty_grey.png" height="100%"></img>
-          }
 
            <tbody>
              {
@@ -75,7 +73,11 @@ class SingleOrder extends Component {
              </tr>
            </tbody>
          </table>
-       </div>
+         </div>
+
+
+       ) : (<img src="/media/cart_empty_grey.png" height="100%"></img>)
+
     );
   }
 }
