@@ -10,7 +10,7 @@ import SingleOrder from './singleOrder';
 
 //current sessions cart; not pulling data from model backend
 
-class Cart extends Component {
+export class Cart extends Component {
   constructor(props) {
     super(props);
   }
@@ -24,7 +24,6 @@ class Cart extends Component {
   }
 
   render() {
-    console.log("STATE:", this.props)
     const { cart, auth } = this.props;
     return(
       <div>
