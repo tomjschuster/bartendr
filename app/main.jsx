@@ -15,6 +15,10 @@ import Signup from "./components/signup";
 import ShippingForm from "./components/shippingForm";
 import OrderSummary from "./components/orderSummary";
 import Review from "./components/review";
+import MeetTheTeam from "./components/meetTheTeam";
+import AboutUs from "./components/aboutUs";
+import Terms from "./components/terms";
+import Help from "./components/help";
 
 import store from './store';
 import { onAppEnter, onSingleProductEnter } from './onenter-hooks';
@@ -42,6 +46,10 @@ render(
         <Route path="/continue" component={ShippingForm} />
         <Route path="/checkout" component={OrderSummary} />
         <Route path="/review" component={Review} />
+        <Route path="/meetTheTeam" component={MeetTheTeam} />
+        <Route path="/aboutUs" component={AboutUs} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/help" component={Help} />
         <IndexRoute component={Home} />
       </Route>
     </Router>

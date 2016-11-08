@@ -35,3 +35,12 @@
 #product-loader {
   margin: 0 auto;
 }
+
+#footer-inline {
+  list-style-type: none;
+}
+
+#footer-inline li {
+  display: inline;
+  margin: 10px;
+}
