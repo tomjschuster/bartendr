@@ -103,10 +103,10 @@ class Products extends Component {
               </div> ))}
         </div>
         <div className="row">
-          <div className="col s2 push-s4">
+          <div className="col s4 push-s1 m2 push-m3">
             { hasMore && <input type="button" className="btn" value={`Show ${productsShownIncrement} More`} onClick={showMore}/> }
           </div>
-          <div className="col s2 push-s4">
+          <div className="col s4 push-s3 m2 push-m5">
             { hasMore && <input type="button" className="btn" value={`Show All ${productsFound}`} onClick={showAll}/> }
           </div>
         </div>

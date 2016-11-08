@@ -34,9 +34,11 @@ class Home extends Component {
     return (
       <div>
         <div>
+              <br />
+              <h4 className="center-align">
+                Pick. Your. Poison.</h4>
               <p className="flow-text center-align">
-                Pick Your Poison:<br/>
-                Enter a liquor type, flavor or product name and explore our extensive catelog...
+                Enter a liquor type, flavor or product name and explore our collection...
               </p>
         </div>
         <div className="row">
@@ -66,7 +68,7 @@ class Home extends Component {
             </div>
             <hr />
             <div>
-              <p className="flow-text center-align">Browse our selections</p>
+              <p className="flow-text center-align">Browse our selection of premium liquors</p>
             </div>
             <div className="row cat-links">
               <div id="vodka-cat" className="col s11 m5 l3 valign-wrapper"

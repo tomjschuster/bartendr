@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import _, { times, find } from 'lodash'; //N
+import { times, find } from 'lodash'; //N
 import { addToCart, updateQuantity } from '../reducers/cart'; //N
 
 
@@ -10,8 +11,11 @@ class SingleProduct extends Component {
   }
 
   render() {
-    const { id, name, price, photoUrl, description, reviews, avgStars } = this.props.selectedProduct;
+    const { id, name, price, photoUrl, description, reviews, avgStars, size } = this.props.selectedProduct;
     const { cart, updateQuantity, selectedProduct, add } = this.props; //N
+    let inCart = find(cart, item => item.product.id === id) ?
+      find(cart, item => item.product.id === id).quantity : 0;
+
      return (
       <div className="row" key={id}>
         <h3>{name}</h3>
@@ -20,7 +24,7 @@ class SingleProduct extends Component {
         </div>
         <div className="col s12 m6">
           <ul>
-                <li>{name}</li>
+                <li>{name} - {size}</li>
                 <li>{`$${price}`}</li>
                 <li>
                   <div className="stars">
@@ -28,12 +32,15 @@ class SingleProduct extends Component {
                   </div>
                 </li>
                 <li>
-                    <a onClick={() => {
+                  <a onClick={() => {
                       Materialize.toast(`${selectedProduct.name} added to cart`, 4000);
-                      _.find(cart, item => item.product.id === selectedProduct.id) ?
-                 updateQuantity(_.find(cart, item => item.product.id === selectedProduct.id).quantity + 1, selectedProduct.id) : add(selectedProduct)} }
-                 className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
+                      find(cart, item => item.product.id === selectedProduct.id) ?
+                        updateQuantity(find(cart, item => item.product.id === selectedProduct.id).quantity + 1, selectedProduct.id) :
+                        add(selectedProduct)} }
+                 className="waves-effect light-blue accent-2 waves-light btn">
+                  <i className="material-icons">add_shopping_cart</i></a>
                 </li>
+                { inCart !== 0 && <li><span>{inCart} in your <Link to="/cart">cart</Link></span></li>}
                 <br />
                 <br />
                 <li>{description}</li>
@@ -52,7 +59,7 @@ class SingleProduct extends Component {
                   <li>{review.created_at.slice(0, 10)}
                     <div className="stars">
                     {
-                      _.times(review.stars, (index) => (<i key={index} className="tiny material-icons">grade</i>))
+                      times(review.stars, (index) => (<i key={index} className="tiny material-icons">grade</i>))
                     }
                     </div>
                   </li>
