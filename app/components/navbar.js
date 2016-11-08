@@ -10,6 +10,9 @@ class Navbar extends Component {
 
   render() {
     let { auth, logout } = this.props;
+    // let isAdmin = auth.isAdmin;
+    console.log("auth", auth);
+    // console.log("isAdmin", isAdmin);
     return(
       <nav className="light-blue accent-2">
         <div className="nav-wrapper">
@@ -20,6 +23,8 @@ class Navbar extends Component {
             <li><Link to="/login"><i className="material-icons">perm_identity</i></Link></li>
             <li><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></li>
             {auth && <li><Link to="/" onClick={logout}>LOGOUT</Link></li>}
+            {auth && <li><Link to="/adminusers">ADMIN: Users</Link></li>}
+            {auth && <li><Link to="/adminproducts">ADMIN: Products</Link></li>}
           </ul>
           <ul className="side-nav" id="mobile-demo">
             <li><Link to="/products"><i className="material-icons">Products</i></Link></li>

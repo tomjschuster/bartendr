@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import store from "../store";
+import { loadAllProducts } from "../reducers/allProducts";
 
 import axios from 'axios';
 
@@ -28,47 +30,49 @@ class AdminProducts extends Component {
 
   // Inside onSubmit:  (e) => this.props.updateUser(e, user.id)
 
-  deleteProducts(userId) {
+  deleteProducts(productId) {
     // console.log("updateUser is RUNNING")
-    const setState2 = this.setState.bind(this);
-
      // console.log("evt", evt);
      // console.log(`/api/users/${userId}`);
      // console.log("userInfo", userInfo)
-    axios.delete(`/api/products/${userId}`)
-    .then( function(res) {
-      console.log("res", res);
-      setState2({status: "Delete Status: " + res.data.status + " " + res.data.status.text})
+    axios.delete(`/api/products/${productId}`)
+    .then( (res) => {
 
-      return axios.get('/api/users');
+    // console.log("res.data", res.data)
+    // this.setState({status: `${res.status} ${res.statusText} / Product deleted!`})
     })
-    .then( function(res) {
-        // console.log("res.data", res.data)
-      setState2({users: res.data});
-    })
-    .catch( (err) => console.log(err) );
+    .catch( (err) => {
+      this.props.reloadAllProducts();  // THIS IS NOT AN ACCEPTABLE METHOD!!! but it works [shrug]
+
+      console.log("this.props", this.props);
+      console.log("this.props.reloadAllProducts", this.props.reloadAllProducts);
+
+      console.log(err) });
 
   }
 
-  updateProducts(evt, userId) {
+  updateProducts(evt, productId) {
      // console.log("updateUser is RUNNING")
-     const setState2 = this.setState.bind(this);
 
-     var userInfo = {
+     var productInfo = {
       name: evt.target.name.value,
-      email: evt.target.email.value,
-      address: evt.target.address.value,
-      isAdmin: evt.target.isAdmin.value
+      proof: evt.target.proof.value,
+      size: evt.target.size.value,
+      description: evt.target.description.value,
+      price: evt.target.price.value,
+      inventory: evt.target.inventory.value,
+      photoUrl: evt.target.photoUrl.value,
      }
      evt.preventDefault();
      // console.log("evt", evt);
      // console.log(`/api/users/${userId}`);
      // console.log("userInfo", userInfo)
-     axios.put(`/api/products/${userId}`, userInfo)
-    .then( function(res) {
+     axios.put(`/api/products/${productId}`, productInfo)
+    .then( (res) => {
+
       // console.log("res.data", res.data)
-      setState2({users: res.data, status: "Update Status: " + res.data.status + " " + res.data.status.text})
-      ;
+      this.props.reloadAllProducts();
+      this.setState({status: "Product updated!"})
     })
     .catch( (err) => console.log(err) );
   }
@@ -94,12 +98,17 @@ class AdminProducts extends Component {
                       <input name="description" type="text" placeholder="Description" defaultValue={`${product.description}`}/>
                       <input name="price" type="number" placeholder="Price" defaultValue={`${product.price}`}/>
                       <input name="inventory" type="number" placeholder="Inventory" defaultValue={`${product.inventory}`}/>
-                      <input name="photoUrl" type="url" placeholder="Photo URL" defaultValue={`${product.photoUrl}`}/>
+                      <input name="photoUrl" type="text" placeholder="Photo URL" defaultValue={`${product.photoUrl}`}/>
+                      <div>Categories: { product.categories && product.categories.map( category =>
+                          <span id={category.name}>{`${category.name} `}</span> )
+
+                        }
+                      </div>
                       <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Update
                         <i className="material-icons right">send</i>
                       </button>
                     </form>
-                    <button onClick={(e) => this.deleteProduct(product.id)} className="right btn waves-effect light-blue accent-2 modal-trigger" type="button" name="action">Delete
+                    <button onClick={(e) => this.deleteProducts(product.id)} className="right btn waves-effect light-blue accent-2 modal-trigger" type="button" name="action">Delete
                       <i className="material-icons right">send</i>
                     </button>
                  </div>
@@ -129,6 +138,9 @@ const mapStateToProps = ({allProducts}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  reloadAllProducts: function() {
+    dispatch(loadAllProducts());
+  }
   // submitNewUser: function (evt) {
   //   evt.preventDefault();
   //   // console.log("evt.target.name.value", evt.target.name.value)

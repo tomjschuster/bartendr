@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
 import axios from 'axios';
 
@@ -17,12 +18,11 @@ export default class AdminUsers extends Component {
 
   componentDidMount() {
    // console.log("this.setState", this.setState);
-    const setState2 = this.setState.bind(this);
+    // const setState2 = this.setState.bind(this);
     axios.get('/api/users')
-    .then( function(res) {
-      // console.log("res.data", res.data)
-      setState2({users: res.data});
-    })
+    .then( (res) =>
+      this.setState({users: res.data})
+    )
     .catch( (err) => console.error(err) );
   }
 
@@ -30,29 +30,35 @@ export default class AdminUsers extends Component {
 
   deleteUser(userId) {
     // console.log("updateUser is RUNNING")
-    const setState2 = this.setState.bind(this);
-
      // console.log("evt", evt);
      // console.log(`/api/users/${userId}`);
      // console.log("userInfo", userInfo)
     axios.delete(`/api/users/${userId}`)
-    .then( function(res) {
+    .then( (res) => {
       console.log("res", res);
-      setState2({status: "Delete Status: " + res.data.status + " " + res.data.status.text})
+      var message = "Delete Status: " + res.status + " " + res.statusText;
+      this.setState({status: message});
 
       return axios.get('/api/users');
     })
-    .then( function(res) {
-        // console.log("res.data", res.data)
-      setState2({users: res.data});
-    })
+    .then( (res) => {
+        // let currentUsers = this.state.users;
+        // let deletedUser = _.find(currentUsers, {id: userId});
+        // if(deletedUser) {
+        //   let deletedUserIdx = currentUsers.indexOf(deletedUser);
+        //   let newUsers = currentUsers.slice(0, deletedUserIdx).concat(currentUsers.splice(deletedUserIdx + 1));
+        //   this.setState({users: newUsers});
+        // }
+      this.setState({users: res.data})
+    }
+    )
     .catch( (err) => console.log(err) );
 
   }
 
   updateUser(evt, userId) {
      // console.log("updateUser is RUNNING")
-     const setState2 = this.setState.bind(this);
+     // const setState2 = this.setState.bind(this);
 
      var userInfo = {
       name: evt.target.name.value,
@@ -65,10 +71,11 @@ export default class AdminUsers extends Component {
      // console.log(`/api/users/${userId}`);
      // console.log("userInfo", userInfo)
      axios.put(`/api/users/${userId}`, userInfo)
-    .then( function(res) {
+    .then( (res) => {
       // console.log("res.data", res.data)
-      setState2({users: res.data, status: "Update Status: " + res.data.status + " " + res.data.status.text})
-      ;
+      var message = "Update Status: " + res.status + " " + res.statusText;
+      this.setState({status: message});
+      this.setState({users: res.data});
     })
     .catch( (err) => console.log(err) );
   }
