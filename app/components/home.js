@@ -71,19 +71,19 @@ class Home extends Component {
               <p className="flow-text center-align">Browse our selection of premium liquors</p>
             </div>
             <div className="row cat-links">
-              <div id="vodka-cat" className="col s11 m5 l3 valign-wrapper"
+              <div id="vodka-cat" className="col s12 m6 l3 valign-wrapper"
                    onClick={() => onCategoryClick(6)}>
                 <h4 className="valign">Vodka</h4>
               </div>
-              <div id="gin-cat" className="col s11 m5 l3 valign-wrapper"
+              <div id="gin-cat" className="col s12 m6 l3 valign-wrapper"
                    onClick={() => onCategoryClick(8)}>
                 <h4 className="valign">Gin</h4>
               </div>
-              <div id="whiskey-cat" className="col s11 m5 l3 valign-wrapper"
+              <div id="whiskey-cat" className="col s12 m6 l3 valign-wrapper"
                    onClick={() => onCategoryClick(7)}>
                 <h4 className="valign">Whiskey</h4>
               </div>
-              <div id="tequila-cat" className="col s11 m5 l3 valign-wrapper"
+              <div id="tequila-cat" className="col s12 m6 l3 valign-wrapper"
                    onClick={() => onCategoryClick(4)}>
                 <h4 className="valign">Tequila</h4>
               </div>
