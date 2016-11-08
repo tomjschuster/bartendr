@@ -14,6 +14,10 @@ import Cart from "./components/cart";
 import Signup from "./components/signup";
 import ShippingForm from "./components/shippingForm";
 import OrderSummary from "./components/orderSummary";
+import AdminUsers from "./components/adminUsers";
+import AdminProducts from "./components/adminProducts";
+
+
 import Review from "./components/review";
 import MeetTheTeam from "./components/meetTheTeam";
 import AboutUs from "./components/aboutUs";
@@ -45,6 +49,8 @@ render(
         <Route path="/login" component={Login} />
         <Route path="/continue" component={ShippingForm} />
         <Route path="/checkout" component={OrderSummary} />
+        <Route path="/adminusers" component={AdminUsers} />
+        <Route path="/adminproducts" component={AdminProducts} />
         <Route path="/review" component={Review} />
         <Route path="/meetTheTeam" component={MeetTheTeam} />
         <Route path="/aboutUs" component={AboutUs} />
