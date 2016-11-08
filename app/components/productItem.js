@@ -17,7 +17,8 @@ class ProductItem extends Component {
           price,
           size,
           avgStars,
-          numReviews } = this.props.product;
+          numReviews,
+          inCart } = this.props.product;
     let { cart,
           add,
           updateQuantity,
@@ -40,12 +41,12 @@ class ProductItem extends Component {
                 </li>
               </ul>
             </div>
-            <div onClick={() => {
+            <div className="card-action">
+               <a onClick={() => {
               Materialize.toast(`${product.name} added to cart`, 4000)
-              _.find(cart, item => item.product.id === product.id) ?
+              find(cart, item => item.product.id === product.id) ?
               updateQuantity(_.find(cart, item => item.product.id === product.id).quantity + 1, product.id) : add(product) }
-              } className="card-action">
-               <a className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
+              } className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>{inCart !== 0 && <span>&nbsp;&nbsp;&nbsp;{inCart} in your <Link to="/cart">cart</Link></span>}
             </div>
           </div>
     );
