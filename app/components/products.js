@@ -36,7 +36,7 @@ class Products extends Component {
         && (!maxPrice || product.price <= maxPrice)
         && (!minStars || Math.round(product.avgStars) >= minStars));
     let productList = filteredProducts.filter((product, idx) => idx < productsShown);
-    let productsFound = products.length;
+    let productsFound = productList.length;
     let hasMore = productsShown < filteredProducts.length;
     this.setState({productList, productsFound, hasMore});
   }
