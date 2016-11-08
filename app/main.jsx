@@ -15,6 +15,7 @@ import Signup from "./components/signup";
 import ShippingForm from "./components/shippingForm";
 import OrderSummary from "./components/orderSummary";
 import OrderHistory from "./components/orderHistory";
+import OrderHistoryItem from "./components/orderHistoryItem";
 import Review from "./components/review";
 import MeetTheTeam from "./components/meetTheTeam";
 import AboutUs from "./components/aboutUs";
@@ -40,7 +41,7 @@ render(
         <Route path="/products" component={Products} />
         <Route path="/products/:productId" component={SingleProduct} onEnter={onSingleProductEnter} />
         <Route path="/orderHistory" component={OrderHistory}  onEnter={onOrdersEnter}/>
-        <Route path="/orderHistory/:orderId" component={Root} />
+        <Route path="/orderHistory/:orderId" component={OrderHistoryItem} />
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />

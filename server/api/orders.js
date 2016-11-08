@@ -8,7 +8,7 @@ const router = module.exports = require('express').Router()
 
 /*----------  ALL ORDERS  ----------*/
 router.get('/:userId', (req, res, next) => {
-  Order.findAll({where : {user_id: +req.params.userId}})
+  Order.find({where : {user_id: +req.params.userId}, {include: [Product]}})
     .then(orders => {
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!", orders);
       res.json(orders);
