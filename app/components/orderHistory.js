@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import OrderHistoryItem from './OrderHistoryItem';
 
 class OrderHistory extends Component {
   constructor(props) {
@@ -9,7 +10,11 @@ class OrderHistory extends Component {
   render() {
     return(
       <div>
-        <h1>Order History</h1>
+        <br />
+        <h3 className="center">Order History</h3>
+
+        <OrderHistoryItem />
+
       </div>
     );
   }

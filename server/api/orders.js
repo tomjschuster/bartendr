@@ -7,8 +7,13 @@ const router = module.exports = require('express').Router()
 
 
 /*----------  ALL ORDERS  ----------*/
-router.get('/', (req, res, next) => {
-  next();
+router.get('/:userId', (req, res, next) => {
+  Order.findAll({where : {user_id: +req.params.userId}})
+    .then(orders => {
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!", orders);
+      res.json(orders);
+    })
+    .catch(next);
 })
 
 router.post('/', (req, res, next) => {
@@ -26,9 +31,7 @@ router.post('/:id', (req, res, next) => {
   .then( orderIt => res.status(201).json(orderIt))
   .catch(next);
 })
+
 // make a post to /orders
 // make post to /orders/id
 /*----------  SINGLE ORDERS  ----------*/
-router.get('/:id', (req, res, next) => {
-  next();
-})

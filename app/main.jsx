@@ -14,6 +14,7 @@ import Cart from "./components/cart";
 import Signup from "./components/signup";
 import ShippingForm from "./components/shippingForm";
 import OrderSummary from "./components/orderSummary";
+import OrderHistory from "./components/orderHistory";
 import Review from "./components/review";
 import MeetTheTeam from "./components/meetTheTeam";
 import AboutUs from "./components/aboutUs";
@@ -21,7 +22,7 @@ import Terms from "./components/terms";
 import Help from "./components/help";
 
 import store from './store';
-import { onAppEnter, onSingleProductEnter } from './onenter-hooks';
+import { onAppEnter, onSingleProductEnter, onOrdersEnter } from './onenter-hooks';
 
 // BONES UPDATE: ADDED Login.jsx
 // render (
@@ -38,7 +39,7 @@ render(
       <Route path="/" component={App} onEnter={onAppEnter}>
         <Route path="/products" component={Products} />
         <Route path="/products/:productId" component={SingleProduct} onEnter={onSingleProductEnter} />
-        <Route path="/orderHistory" component={Root} />
+        <Route path="/orderHistory" component={OrderHistory}  onEnter={onOrdersEnter}/>
         <Route path="/orderHistory/:orderId" component={Root} />
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />

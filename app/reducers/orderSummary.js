@@ -83,7 +83,8 @@ export const unauthStart = (user, cart) =>
           let passObj = {
             ship_name: response.data.name,
             ship_address: response.data.address,
-            user_id: response.data.id
+            user_id: response.data.id,
+            ship_date: new Date().toJSON().slice(0,10)
           }
           dispatch(unauthCreateOrder(passObj, cart));
         } else
