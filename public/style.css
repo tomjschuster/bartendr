@@ -44,3 +44,221 @@
   display: inline;
   margin: 10px;
 }
+
+/* TYPEAHEAD STYLING */
+#search-ahead-icon {
+  padding-top: 0.5rem;
+}
+
+.typeahead-search-input {
+  padding-left: 2.5rem !important;
+  margin-bottom: 0 !important;
+  font-size: 2rem !important;
+  color: #444 !important;
+}
+
+.typeahead-search-list-anchor {
+  color: #555;
+}
+.typeahead-search-list-anchor:hover {
+  color: #222;
+}
+
+.typeahead-search-results {
+  margin-top: 0;
+  width: 100%;
+  background-color: rgba(245, 245, 245, 0.7);
+  position: absolute;
+  border-bottom: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  padding: 0.5em !important;
+}
+
+
+/* Home Links */
+.cat-links div {
+  height: 12em;
+  background-color: #555;
+  border: 1px solid #fff;
+  margin: 1em auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-links div:hover {
+  background-color: #222;
+  cursor: pointer;
+}
+
+.cat-links div h4 {
+  color: #fff;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.cat-links div#vodka-cat:before {
+  background-image: url("/media/vodka-bottles.jpg");
+  border: 1px solid #fff;
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.4;
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.cat-links div#gin-cat:before {
+  background-image: url("/media/gin-bottles.jpg");
+  border: 1px solid #fff;
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.4;
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.cat-links div#whiskey-cat:before {
+  background-image: url("/media/whiskey-bottles.jpg");
+  border: 1px solid #fff;
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.4;
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.cat-links div#tequila-cat:before {
+  background-image: url("/media/tequila-bottles.jpg");
+  border: 1px solid #fff;
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.4;
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+
+.all-links div {
+  position: relative;
+  background: #333;
+  overflow: hidden;
+  height: 12em;
+}
+
+.all-links div:hover {
+  background: #111;
+}
+
+.all-links div:before {
+  background-image: url("/media/all-liquors.jpg");
+  border: 1px solid #fff;
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.2;
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.all-links div:hover {
+  cursor: pointer;
+}
+
+.all-links div h4 {
+  color: #fff;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+       url(/iconfont/MaterialIcons-Regular.woff) format('woff'),
+       url(/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

@@ -28,19 +28,16 @@ class Products extends Component {
   }
 
   updateProductList() {
-    // console.log('updating list');
-    let { allProducts } = this.props;
+    let { products } = this.props;
     let { currentCategory, maxPrice, minStars, productsShown } = this.state;
-    // console.log(currentCategory, allProducts)
-    let products = allProducts.filter(product =>
+    let filteredProducts = products.filter(product =>
       product.inventory
         && (!currentCategory || find(product.categories, {id: currentCategory}))
         && (!maxPrice || product.price <= maxPrice)
         && (!minStars || Math.round(product.avgStars) >= minStars));
-    // console.log(products);
-    let productList = products.filter((product, idx) => idx < productsShown);
-    let productsFound = products.length;
-    let hasMore = productsShown < products.length;
+    let productList = filteredProducts.filter((product, idx) => idx < productsShown);
+    let productsFound = productList.length;
+    let hasMore = productsShown < filteredProducts.length;
     this.setState({productList, productsFound, hasMore});
   }
 
@@ -65,20 +62,18 @@ class Products extends Component {
   showAll() {
     let productsShown = this.state.productsFound;
     let hasMore = false;
-    console.log('productsShown', productsShown)
     this.setState({productsShown, hasMore});
   }
 
   componentDidUpdate(prevProps, prevState) {
     let { currentCategory, maxPrice, minStars, productsShown, productsFound } = this.state;
-    let { allProducts } = this.props;
+    let { products } = this.props;
     if (prevState.currentCategory !== currentCategory
           || prevState.maxPrice !== maxPrice
           || prevState.minStars !== minStars
           || prevState.productsShown !== productsShown
           || prevState.productsFound !== productsFound
-          || prevProps.allProducts !== allProducts) {
-      // console.log(prevState, this.state);
+          || prevProps.products !== products) {
       this.updateProductList();
     }
   }
@@ -101,18 +96,18 @@ class Products extends Component {
         <div>
           <div className="col s12"><p>{productsFound} products found</p></div>
         </div>
-        <div ref="allProducts" className="row all-products">
+        <div className="row all-products">
           { productList.map(product => (
               <div key={product.id} className="product-item col s12 m6 l4">
                 <ProductItem product={product} />
               </div> ))}
         </div>
         <div className="row">
-          <div className="col s2 push-s4">
-            { hasMore && <input type="button" className="btn" value={`Show ${productsShownIncrement} More`} onClick={showMore}/> }
+          <div className="col s4 push-s1 m2 push-m3">
+            { hasMore && <input type="button" className="light-blue accent-2 btn" value={`Show ${productsShownIncrement} More`} onClick={showMore}/> }
           </div>
-          <div className="col s2 push-s4">
-            { hasMore && <input type="button" className="btn" value={`Show All ${productsFound}`} onClick={showAll}/> }
+          <div className="col s4 push-s3 m2 push-m5">
+            { hasMore && <input type="button" className="light-blue accent-2 btn" value={`Show All ${productsFound}`} onClick={showAll}/> }
           </div>
         </div>
       </div>
@@ -121,9 +116,17 @@ class Products extends Component {
 }
 
 
-const mapStateToProps = ({allProducts}) => ({
-  allProducts
-});
+const mapStateToProps = ({allProducts, cart}) => {
+  let products = allProducts.map(product => {
+    let cartItem = find(cart, item => product.id === item.product.id);
+    product.inCart = cartItem ? cartItem.quantity : 0;
+    return product
+  });
+  return {
+    products,
+    cart
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
 });
