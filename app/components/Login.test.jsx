@@ -1,9 +1,9 @@
 import React from 'react'
-import chai, {expect} from 'chai'                                                   
+import chai, {expect} from 'chai'
 chai.use(require('chai-enzyme'))
 import {shallow} from 'enzyme'
 
-import {Login} from './Login'
+import {Login} from './Login.jsx'
 
 describe('<Login />', () => {
   let root
@@ -22,6 +22,6 @@ describe('<Login />', () => {
 
   it('has a login button', () => {
     const submit = root.find('input[type="submit"]')
-    expect(submit).to.have.length(1)
+    expect(submit).to.have.length(2)
   })
 })

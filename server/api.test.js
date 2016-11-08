@@ -10,7 +10,7 @@ describe('/api/users', () => {
       request(app)
         .get(`/api/users/1`)
         .expect(401)
-    )    
+    )
 
     it('POST creates a user', () =>
       request(app)
@@ -32,7 +32,25 @@ describe('/api/users', () => {
         .redirects(1)
         .then(res => expect(res.body).to.contain({
           email: 'eve@interloper.com'
-        }))        
+        }))
     )
   })
 })
+
+xdescribe('/api/caregories ', () => {
+    it('GET all categories', () =>
+      request(app)
+        .get('/api/categories')
+        .expect(200)
+        .done()
+    )
+
+    it('GET category # 1', () =>
+      request(app)
+        .get('/api/categories/1')
+        .expect(200)
+        .done()
+
+    )
+  })
+
