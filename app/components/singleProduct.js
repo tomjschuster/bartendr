@@ -8,11 +8,17 @@ import { addToCart, updateQuantity } from '../reducers/cart'; //N
 class SingleProduct extends Component {
   constructor(props) {
     super(props);
+    this.onCategoryClick = this.onCategoryClick.bind(this);
   }
+
+  onCategoryClick(currentCategory) {
+      this.props.router.push({pathname: '/products', state: {currentCategory}});
+    }
 
   render() {
     const { id, name, price, photoUrl, description, reviews, avgStars, size, categories } = this.props.selectedProduct;
     const { cart, updateQuantity, selectedProduct, add } = this.props; //N
+    const { onCategoryClick } = this;
     let inCart = find(cart, item => item.product.id === id) ?
       find(cart, item => item.product.id === id).quantity : 0;
 
@@ -38,7 +44,9 @@ class SingleProduct extends Component {
                 <br />
                  <li>
                    { categories && categories.map( categ => (
-                   <div className="light-blue accent-1 chip">{categ.name}</div>
+                   <div key={categ.id}
+                      className="category-chip light-blue accent-1 chip"
+                      onClick={()=> onCategoryClick(categ.id)}>{categ.name}</div>
                     ))
                    }
                 </li>

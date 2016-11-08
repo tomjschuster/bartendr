@@ -224,6 +224,13 @@
   z-index: 2;
 }
 
+
+
+/* Single Product Page */
+.category-chip:hover {
+  cursor: pointer;
+}
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -262,3 +269,5 @@
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+
