@@ -73,13 +73,14 @@ router.delete('/:id', (req, res, next) => {
       },
       include: [Category, Review]
     })
-      .then( res => {
+    .then( (param) => {
 
-        console.log("res", res)
-        res.sendStatus(202);
-      })
-      .catch(next);
-    } else {
-      res.sendStatus(401);
-    }
+      console.log("param", param)
+      res.sendStatus(202);
+    })
+    .catch(next);
+  } else {
+    res.sendStatus(401);
+  }
+
 })

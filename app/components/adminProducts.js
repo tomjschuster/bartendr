@@ -37,12 +37,12 @@ class AdminProducts extends Component {
      // console.log("userInfo", userInfo)
     axios.delete(`/api/products/${productId}`)
     .then( (res) => {
+      this.props.reloadAllProducts();
 
     // console.log("res.data", res.data)
     // this.setState({status: `${res.status} ${res.statusText} / Product deleted!`})
     })
     .catch( (err) => {
-      this.props.reloadAllProducts();  // THIS IS NOT AN ACCEPTABLE METHOD!!! but it works [shrug]
 
       console.log("this.props", this.props);
       console.log("this.props.reloadAllProducts", this.props.reloadAllProducts);
