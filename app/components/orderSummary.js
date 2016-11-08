@@ -55,23 +55,32 @@ class OrderSummary extends Component {
 
     return (
       <div>
-        <h4>Order Summary:</h4>
         {
           this.state.completedOrder ?
           (
-           <div className="col s12">
-           <img src="/media/thank_you_for_shopping.png" height="200px"/>
-            <br /><br />
-            <Link to="/products">
-            <button className="center btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Keep Shopping
-            <i className="material-icons right" required>send</i>
-            </button>
-            </Link>
-            <br /><br />
-            <br /><br />
+           <div className="col s12 m12">
+             <br />
+              <br />
+              <br />
+              <br />
+             <img src="/media/thank_you_for_shopping.png" height="200px"/>
+              <br /><br />
+              <br /><br />
+              <br /><br />
+              <Link to="/products">
+              <button className="center btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Keep Shopping
+              <i className="material-icons right" required>send</i>
+              </button>
+              </Link>
+              <br /><br />
+              <br /><br />
            </div>
            ) :
-          (<div>
+          ( cart.length ? (
+           <div>
+           <br />
+            <h4>Order Summary:</h4>
+            <br />
           <SingleOrder />
 
 
@@ -105,7 +114,7 @@ class OrderSummary extends Component {
           </div>
         </div>
     </form>
-    </div>
+    </div> ) : (<div>{this.props.router.push('/cart')}</div>)
     )
     }
     </div>
