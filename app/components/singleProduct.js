@@ -46,7 +46,6 @@ class SingleProduct extends Component {
                 <li>
                   <a onClick={() => {
                       Materialize.toast(`${selectedProduct.name} added to cart`, 4000);
-<
                       _.find(cart, item => item.product.id === selectedProduct.id) ?
                  updateQuantity(_.find(cart, item => item.product.id === selectedProduct.id).quantity + 1, selectedProduct.id) : add(selectedProduct)} }
                  className="waves-effect light-blue accent-2 waves-light btn" ><i className="material-icons">add_shopping_cart</i>  Add to cart</a>
