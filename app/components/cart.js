@@ -31,11 +31,30 @@ class Cart extends Component {
         <br />
         <SingleOrder />
         <br></br>
-          <Link to={auth ? "/checkout" : "/continue"}>
-            <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Checkout
-              <i className="material-icons right">send</i>
-            </button>
-          </Link>
+        {
+          cart.length ? (
+            <div>
+            <Link to={auth ? "/checkout" : "/continue"}>
+              <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Checkout
+                <i className="material-icons right">send</i>
+              </button>
+            </Link>
+
+            <Link to="/products">
+              <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Continue Shopping
+                <i className="material-icons right">shop</i>
+              </button>
+            </Link>
+            </div>
+
+            ) : (
+              <Link to="/products">
+              <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Go Shopping
+                <i className="material-icons right">shop</i>
+              </button>
+            </Link>
+          )
+        }
        </div>
     );
   }

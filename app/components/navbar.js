@@ -10,13 +10,10 @@ class Navbar extends Component {
 
   render() {
     let { auth, logout } = this.props;
-    // let isAdmin = auth.isAdmin;
-    console.log("auth", auth);
-    // console.log("isAdmin", isAdmin);
-    return(
+    return (
       <nav className="light-blue accent-2">
         <div className="nav-wrapper">
-          <a href="#!" className="brand-logo"><img src="/media/bartendr_logo_white_trans.png" height="60px"></img></a>
+          <Link to="/" className="brand-logo"><img src="/media/bartendr_logo_white_trans.png" height="60px"></img></Link>
           <a href="#" data-activates="mobile-demo" className="button-collapse right"><i className="material-icons">menu</i></a>
           <ul className="right hide-on-med-and-down">
             <li><Link to="/products"><i className="material-icons">search</i></Link></li>

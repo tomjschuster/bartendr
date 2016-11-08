@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 class Footer extends Component {
   constructor(props) {
@@ -11,25 +12,34 @@ class Footer extends Component {
         <footer className="page-footer white">
           <div className="col s12 light-blue accent-2">
           <div className="container">
-              <div className="center">
-                <h5 className="white-text">Footer Content</h5>
-                <p className="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div className="light-blue accent-2 center">
-                <h5 className="white-text">Links</h5>
-                <ul>
-                  <li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a className="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a className="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a className="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          <div className="row">
+              <br />
+              <div className="light-blue accent-2 col s12 center">
+                <ul id="footer-inline">
+                  <div className="col m3 s12 grey-text text-lighten-3">
+                  <li><Link to="/aboutUs">About Us</Link></li>
+                  </div>
+
+                  <div className="col m3 s12 grey-text text-lighten-3">
+                  <li><Link to="/meetTheTeam">Meet The Team</Link></li>
+                  </div>
+
+                  <div className="col m3 s12 grey-text text-lighten-3">
+                  <li><Link to="/terms">Terms & Conditions</Link></li>
+                  </div>
+
+                  <div className="col m3 s12 grey-text text-lighten-3">
+                  <li><Link to="/help">Help</Link></li>
+                  </div>
                 </ul>
               </div>
+          </div>
           </div>
           </div>
           <div className="footer-copyright col s12 light-blue accent-3">
             <div className="container">
             © 2016 Copyright Text
-            <a className="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <img src="/media/bartendr_logo_white_trans.png" height="45px" className="right"/>
             </div>
           </div>
         </footer>

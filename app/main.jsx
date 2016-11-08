@@ -18,11 +18,14 @@ import AdminUsers from "./components/adminUsers";
 import AdminProducts from "./components/adminProducts";
 
 
-import {loadSingleProduct} from './reducers/selectedProduct';
-import {receiveCart, hardCodedData } from "./reducers/cart";
-
+import Review from "./components/review";
+import MeetTheTeam from "./components/meetTheTeam";
+import AboutUs from "./components/aboutUs";
+import Terms from "./components/terms";
+import Help from "./components/help";
 
 import store from './store';
+import { onAppEnter, onSingleProductEnter } from './onenter-hooks';
 
 // BONES UPDATE: ADDED Login.jsx
 // render (
@@ -32,23 +35,8 @@ import store from './store';
 //       <Route path="/login" component={Login} />
 //     </Router>
 //   </Provider>
-const onSingleProductEnter = function(nextRouterState){
-  const productId = nextRouterState.params.productId;
-  const thunk = loadSingleProduct(productId);
-  store.dispatch(thunk);
 
-}
-
-const onAppEnter = function () {
-  let cart = localStorage.cart && JSON.parse(localStorage.cart)
-  if(cart) {
-    store.dispatch(receiveCart(cart));
-  } else {
-    localStorage.cart = JSON.stringify(hardCodedData);
-  }
-}
-
-render (
+render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={onAppEnter}>
@@ -63,6 +51,11 @@ render (
         <Route path="/checkout" component={OrderSummary} />
         <Route path="/adminusers" component={AdminUsers} />
         <Route path="/adminproducts" component={AdminProducts} />
+        <Route path="/review" component={Review} />
+        <Route path="/meetTheTeam" component={MeetTheTeam} />
+        <Route path="/aboutUs" component={AboutUs} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/help" component={Help} />
         <IndexRoute component={Home} />
       </Route>
     </Router>

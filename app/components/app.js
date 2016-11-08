@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   render() {
-    return(
+    return (
       <div className="row white">
         <Navbar />
         <div className="col s0 m1 l1"></div>

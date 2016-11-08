@@ -23,16 +23,16 @@ class FilterBar extends Component {
   }
 
   render() {
-    let { allCategories, setCurrentCategory, setMaxPrice } = this.props;
+    let { allCategories, setCurrentCategory, setMaxPrice, setMinStars } = this.props;
     return (
       <Collapsible>
-        <CollapsibleItem header='Filter' icon='filter_drama'>
+        <CollapsibleItem header='Filter' icon='clear_all'>
           <div className='row'>
             <div className='col s12 m4'>
             <Input s={12} type='select' defaultValue={0} onChange={evt => setCurrentCategory(Number(evt.target.value))}>
               <option value='' disabled selected>Category</option>
               { allCategories.map(category => (
-               <option value={category.id}>{category.name}</option>
+               <option key={category.id} value={category.id}>{category.name}</option>
                 ))}
             </Input>
             </div>
@@ -48,33 +48,13 @@ class FilterBar extends Component {
             </Input>
             </div>
             <div className='col s12 m4'>
-            <Input s={12} type='select'>
+            <Input s={12} type='select' onChange={evt => setMinStars(Number(evt.target.value))}>
               <option value='0' disabled selected>Rating</option>
-              <option value='1'>
-                <i className="tiny material-icons">grade</i>
-                </option>
-              <option value='2'>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-              </option>
-              <option value='3'>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-              </option>
-              <option value='4'>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-              </option>
-              <option value='5'>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-                <i className="tiny material-icons">grade</i>
-              </option>
+              <option value='1'>★</option>
+              <option value='2'>★★</option>
+              <option value='3'>★★★</option>
+              <option value='4'>★★★★</option>
+              <option value='5'>★★★★★</option>
             </Input>
             </div>
       </div>

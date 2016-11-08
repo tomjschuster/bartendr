@@ -29,7 +29,8 @@ export const hardCodedData = [
 //   return cart.find(item => item.product && item.product.id === id)
 // }
 
-const initialState = hardCodedData;
+const initialState = []; // N
+//hardCodedData;
 // [
 //   { purchase_price: 0,
 //     quantity: 0,
@@ -42,6 +43,7 @@ const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
 const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 const ADD_TO_CART = 'ADD_TO_CART';
 const RECEIVE_CART = "RECEIVE_CART";
+const CLEAR_CART = "CLEAR_CART";
 
 /*----------  ACTION CREATORS  ----------*/
 export const updateQuantity = (newQuantity, productId) => ({
@@ -60,9 +62,14 @@ export const receiveCart = (cart) => ({
   cart: cart
 });
 
-export const addToCart = (productId) => ({
+export const addToCart = (product) => ({
   type: ADD_TO_CART,
-  productId: productId
+  product: product
+});
+
+export const clearCart = () => ({
+  type: CLEAR_CART,
+  cart: []
 });
 
 
@@ -95,11 +102,17 @@ export default (state = initialState, action) => {
       localStorage.cart = JSON.stringify(finalCart);
       return finalCart;
     case ADD_TO_CART:
-      var cart = [...state];
-      // needs further fetching with single product
+      // N
+      // product is attached to action, get its price
+      // by default every time a product is added, its quantity is 1
+      var cartItem ={ product: action.product, purchase_price: action.product.price, quantity: 1} ;
+      var cart = [...state, cartItem];
       localStorage.cart = JSON.stringify(cart);
       return cart;
     case RECEIVE_CART:
+      return action.cart;
+     case CLEAR_CART:
+      localStorage.cart = JSON.stringify(action.cart);
       return action.cart;
     default:
       return state;
