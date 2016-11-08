@@ -10,29 +10,40 @@ class SingleProduct extends Component {
   }
 
   render() {
-    const { id, name, price, photoUrl, description, reviews, avgStars } = this.props.selectedProduct;
+    const { id, name, price, photoUrl, description, reviews, avgStars, categories } = this.props.selectedProduct;
     const { cart, updateQuantity, selectedProduct, add } = this.props; //N
+    console.log("!!!!!!!!!",selectedProduct);
      return (
       <div className="row" key={id}>
-        <h3>{name}</h3>
+        <br />
+        <br />
+
         <div>
         <div className="col s12 m6"> <img src={photoUrl || '/media/default-bottle.jpg'} />
         </div>
         <div className="col s12 m6">
           <ul>
-                <li>{name}</li>
-                <li>{`$${price}`}</li>
+                <li><h4>{name}</h4></li>
+                <li><h5>{`$${price}`}</h5></li>
                 <li>
                   <div className="stars">
                     { times(Math.round(avgStars), idx => <i key={idx} className="tiny material-icons">grade</i>)}
                   </div>
                 </li>
+                <br />
+                 <li>
+                   { categories && categories.map( categ => (
+                   <div className="light-blue accent-1 chip">{categ.name}</div>
+                    ))
+                   }
+                </li>
+                <br />
                 <li>
                     <a onClick={() => {
                       Materialize.toast(`${selectedProduct.name} added to cart`, 4000);
                       _.find(cart, item => item.product.id === selectedProduct.id) ?
                  updateQuantity(_.find(cart, item => item.product.id === selectedProduct.id).quantity + 1, selectedProduct.id) : add(selectedProduct)} }
-                 className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>
+                 className="waves-effect light-blue accent-2 waves-light btn" ><i className="material-icons">add_shopping_cart</i>  Add to cart</a>
                 </li>
                 <br />
                 <br />
@@ -40,8 +51,14 @@ class SingleProduct extends Component {
               </ul>
         </div>
         </div>
+
+
+
+
+
         <div id="reviews" className="col s12">
-          <h2>Reviews</h2>
+          <br />
+          <h4>Reviews</h4>
           <hr />
           {
             reviews && reviews.map(review => (
