@@ -43,7 +43,7 @@ class ProductItem extends Component {
             </div>
             <div className="card-action">
                <a onClick={() => {
-              Materialize.toast(`${product.name} added to cart`, 4000)
+              Materialize.toast(`${product.name} added to cart`, 2000)
               find(cart, item => item.product.id === product.id) ?
               updateQuantity(_.find(cart, item => item.product.id === product.id).quantity + 1, product.id) : add(product) }
               } className="waves-effect light-blue accent-2 waves-light btn"><i className="material-icons">add_shopping_cart</i></a>{inCart !== 0 && <span>&nbsp;&nbsp;&nbsp;{inCart} in your <Link to="/cart">cart</Link></span>}
