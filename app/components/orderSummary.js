@@ -63,12 +63,12 @@ class OrderSummary extends Component {
               <br />
               <br />
               <br />
-             <img src="/media/thank_you_for_shopping.png" height="200px"/>
+             <img src="/media/thank_you_for_shopping.png" className="responsive-img"/>
               <br /><br />
               <br /><br />
               <br /><br />
               <Link to="/products">
-              <button className="center btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Keep Shopping
+              <button className="center btn waves-effect light-blue accent-2 " type="submit" name="action">Keep Shopping
               <i className="material-icons right" required>send</i>
               </button>
               </Link>

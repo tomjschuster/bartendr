@@ -30,7 +30,7 @@ export class SingleOrder extends Component {
         cart.length ? (
         <div>
           <br />
-          <table className="responsive-table striped">
+          <table className="striped">
            <thead>
              <tr>
                  <th data-field="id">Product</th>
@@ -76,7 +76,7 @@ export class SingleOrder extends Component {
          </div>
 
 
-       ) : (<img src="/media/cart_empty_grey.png" height="100%"></img>)
+       ) : (<img src="/media/cart_empty_grey.png" className="responsive-img"></img>)
 
     );
   }

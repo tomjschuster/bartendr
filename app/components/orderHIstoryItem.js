@@ -21,15 +21,16 @@ class OrderHistoryItem extends Component {
            <div>
            {selectedOrder && (
             <div>
-             <ul>
-               <li>{`Date: ${selectedOrder.created_at.slice(0, 10)}`}</li>
-                <li>{`status: ${selectedOrder.status}`}</li>
+              <h3 className="center">{`Order # ${selectedOrder.id}`}</h3>
+             <ul className="center">
+               <li>{`Placed on: ${selectedOrder.created_at.slice(0, 10)}`}</li>
+                <li>{`Status: ${selectedOrder.status}`}</li>
              </ul>
 
 
        <div>
         <br />
-          <table className="responsive-table striped">
+          <table className=" striped">
            <thead>
              <tr>
                  <th data-field="id">Product</th>
