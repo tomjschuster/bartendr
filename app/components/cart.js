@@ -29,7 +29,7 @@ export class Cart extends Component {
       <div>
         <br />
         {
-          cart.length ? <img src="/media/your_cart_blue.png" height="50px"/> : <div></div>
+          cart.length ? <img src="/media/your_cart_blue.png" className="responsive-img col s8 m4"/> : <div></div>
         }
         <br />
         <SingleOrder />
@@ -52,6 +52,7 @@ export class Cart extends Component {
 
             ) : (
               <Link to="/products">
+              <br />
               <button className="right btn waves-effect light-blue accent-2 modal-trigger" type="submit" name="action">Go Shopping
                 <i className="material-icons right">shop</i>
               </button>
