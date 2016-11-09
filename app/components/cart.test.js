@@ -39,13 +39,13 @@ const testCart = createRandomCart(5)
 
 describe('Cart', () => {
 
-  describe('the cart state', () => {
+  let cartData, cartWrapper;
+  beforeEach('Create <Cart /> wrapper', () => {
+    cartData = testCart;
+    cartWrapper = shallow(<Cart cart={cartData}/>);
+  });
 
-    let cartData, cartWrapper;
-    beforeEach('Create <Cart /> wrapper', () => {
-      cartData = testCart;
-      cartWrapper = shallow(<Cart cart={cartData}/>);
-    });
+  describe('the cart state', () => {
 
     it("Cart component has cart passed to it's props and is an array", () => {
       expect(cartWrapper.instance().props.cart).to.be.length(5);
@@ -64,11 +64,48 @@ describe('Cart', () => {
       expect(cartPropsFirstItem).to.include.keys('product');
       expect(cartPropsFirstItem.product).to.be.instanceof(Object);
     });
+  });
 
-    // it("Renders a table component called 'SingleOrder' that will in turn render the cart items", () => {
-    //   console.log(cartWrapper.render(SingleOrder))
-    //   expect(cartWrapper.find(<SingleOrder />)).to.have.length(1)
-    // });
+  describe('the table which renders the cart items', () => {
+
+    let cartData, singleOrderWrapper;
+    beforeEach('Create <Cart /> wrapper', () => {
+      cartData = testCart;
+      singleOrderWrapper = shallow(<SingleOrder cart={cartData}/>);
+    });
+
+    it("Renders a table component called 'SingleOrder' that will in turn render the cart items", () => {
+      expect(cartWrapper.children().find(ConnectedSingleOrder)).to.have.length(1);
+    });
+
+    it("SingleOrder contains a table displaying product image, product name, quantity, and price", () => {
+      expect(singleOrderWrapper.find('table')).to.have.length(1);
+      expect(singleOrderWrapper.containsMatchingElement(<th data-field="id">Product</th>)).to.equal(true);
+      expect(singleOrderWrapper.containsMatchingElement(<th data-field="name">Name</th>)).to.equal(true);
+      expect(singleOrderWrapper.containsMatchingElement(<th data-field="quantity">Quantity</th>)).to.equal(true);
+      expect(singleOrderWrapper.containsMatchingElement(<th data-field="price">Price</th>)).to.equal(true);
+    });
+
+    it("The table calculates the correct price per item based on quantity and calculates the correct total price", () => {
+      let currentTotal = cartData.reduce((prev, curr) => {
+        return prev + curr.purchase_price * curr.quantity
+      }, 0);
+
+      expect(singleOrderWrapper.find('#totalprice').text()).to.equal(currentTotal.toString());
+
+      // Changing the quantity of the first item in the cart
+      cartData[0].quantity = cartData[0].quantity + 2;
+      singleOrderWrapper.setState(cartData);
+      let newTotal = cartData.reduce((prev, curr) => {
+        return prev + curr.purchase_price * curr.quantity
+      }, 0);
+
+      expect(singleOrderWrapper.find('#totalprice').text()).to.equal(newTotal.toString());
+
+    });
+
+
+
 
   });
 
