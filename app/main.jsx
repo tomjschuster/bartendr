@@ -23,7 +23,7 @@ import Terms from "./components/terms";
 import Help from "./components/help";
 
 import store from './store';
-import { onAppEnter, onSingleProductEnter, onOrdersEnter } from './onenter-hooks';
+import { onAppEnter, onSingleProductEnter, onOrdersEnter, onSingleOrderEnter } from './onenter-hooks';
 
 // BONES UPDATE: ADDED Login.jsx
 // render (
@@ -41,7 +41,7 @@ render(
         <Route path="/products" component={Products} />
         <Route path="/products/:productId" component={SingleProduct} onEnter={onSingleProductEnter} />
         <Route path="/orderHistory" component={OrderHistory}  onEnter={onOrdersEnter}/>
-        <Route path="/orderHistory/:orderId" component={OrderHistoryItem} />
+        <Route path="/orderHistory/:orderId" component={OrderHistoryItem} onEnter={onSingleOrderEnter} />
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />

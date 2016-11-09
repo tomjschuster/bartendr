@@ -2,13 +2,33 @@
 
 const db = require('APP/db')
 const Order = require('../../db/models/order')
+const Product = require('../../db/models/product')
 const OrderItem = require('../../db/models/orderItem')
 const router = module.exports = require('express').Router()
 
 
 /*----------  ALL ORDERS  ----------*/
-router.get('/:userId', (req, res, next) => {
-  Order.find({where : {user_id: +req.params.userId}, {include: [Product]}})
+router.get('/byuser/:userId', (req, res, next) => {
+  Order.findAll({
+      where: {user_id: +req.params.userId},
+      include: [
+       {model: OrderItem, include: [Product]}
+      ]
+      })
+    .then(orders => {
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!", orders);
+      res.json(orders);
+    })
+    .catch(next);
+})
+
+router.get('/:orderId', (req, res, next) => {
+  Order.findOne({
+      where: {id: +req.params.orderId},
+      include: [
+       {model: OrderItem, include: [Product]}
+      ]
+      })
     .then(orders => {
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!", orders);
       res.json(orders);

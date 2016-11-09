@@ -14,7 +14,7 @@ export const receiveAllOrders = orders => ({
 
 /*----------  THUNKS  ----------*/
 export const loadAllOrders = (userId) => dispatch => {
-   axios.get(`/api/orders/${userId}`)
+   axios.get(`/api/orders/byuser/${userId}`)
    .then( function(res) {
     console.log("++++++++++++++++++");
     console.log(res.data);

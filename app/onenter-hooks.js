@@ -4,6 +4,7 @@ import { loadAllOrders } from './reducers/orderHistory';
 import { loadAllCategories } from './reducers/allCategories';
 import { receiveCart, initialState as emptyCart } from './reducers/cart';
 import { loadSingleProduct } from './reducers/selectedProduct';
+import { loadSingleOrder } from './reducers/selectedOrder';
 
 
 export const onAppEnter = () => {
@@ -25,7 +26,16 @@ export const onSingleProductEnter = function(nextRouterState){
 
 
 export const onOrdersEnter = function(nextRouterState){
- // const productId = nextRouterState.params.productId;
-  const thunk = loadAllOrders(2);
+  let auth = store.getState().auth;
+  if (auth) {
+    const thunk = loadAllOrders(auth.id);
+    store.dispatch(thunk);
+
+  }
+};
+
+export const onSingleOrderEnter = function(nextRouterState){
+  const orderId = nextRouterState.params.orderId;
+  const thunk = loadSingleOrder(orderId);
   store.dispatch(thunk);
 };
