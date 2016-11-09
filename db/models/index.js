@@ -23,6 +23,15 @@ Product.hasMany(Review);
 Order.belongsToMany(Product, {through: OrderItem});
 Product.belongsToMany(Order, {through: OrderItem});
 
+// this helped to make include work for orders
+///////////////
+Order.hasMany(OrderItem);
+Product.hasMany(OrderItem);
+
+OrderItem.belongsTo(Product);
+OrderItem.belongsTo(Order);
+////////////////
+
 Category.belongsToMany(Product, {through: 'product_category'});
 Product.belongsToMany(Category, {through: 'product_category'});
 

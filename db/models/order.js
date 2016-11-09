@@ -9,7 +9,7 @@ const Order = db.define('order', {
     defaultValue: "created"
   },
   ship_date: {
-    type: Sequelize.DATE
+    type: Sequelize.STRING
   },
   ship_name: {
     type: Sequelize.STRING

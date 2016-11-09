@@ -1,20 +1,34 @@
-/*----------  INITIAL STATE  ----------*/
-const initialState =
-{
+import axios from 'axios';
+import { convertProduct } from '../converters';
 
-};
+/*----------  INITIAL STATE  ----------*/
+const initialState = null;
 
 /*----------  ACTION TYPES  ----------*/
-const RECEIVE_STATION_STATUS = 'RECEIVE_STATION_STATUS';
+const RECEIVE_SINGLE_ORDER = 'RECEIVE_SINGLE_ORDER';
+// const SET_SELECTED_PRODUCT = 'SET_SELECTED_PRODUCT';
+
 
 /*----------  ACTION CREATORS  ----------*/
-export const receiveStationStatus = stations => ({
-  type: RECEIVE_STATION_STATUS,
-  stations
+
+export const receiveSingleOrder = selectedOrder => ({
+  type: RECEIVE_SINGLE_ORDER,
+  selectedOrder
 });
 
+// export const setSelectedOrder = productId => ({
+//   type: SET_SELECTED_PRODUCT,
+//   productId
+// });
+
+
 /*----------  THUNKS  ----------*/
-export const loadStationStatus = () => dispatch => {
+export const loadSingleOrder = (id) => dispatch => {
+  axios.get(`/api/orders/${id}`)
+   .then( function(res) {
+    dispatch(receiveSingleOrder(res.data));
+   })
+   .catch( (err) => console.error(err) );
 
 };
 
@@ -22,7 +36,8 @@ export const loadStationStatus = () => dispatch => {
 /*----------  REDUCER  ----------*/
 export default (state = initialState, action) => {
   switch (action.type) {
-    case RECEIVE_STATION_STATUS: return action.stations;
+    case RECEIVE_SINGLE_ORDER:
+      return action.selectedOrder;
     default: return state;
   }
 };

@@ -17,7 +17,7 @@ class Navbar extends Component {
           <a href="#" data-activates="mobile-demo" className="button-collapse right"><i className="material-icons">menu</i></a>
           <ul className="right hide-on-med-and-down">
             <li><Link to="/products"><i className="material-icons">view_module</i></Link></li>
-            <li><Link to="/login"><i className="material-icons">perm_identity</i></Link></li>
+            <li><Link to={auth ? "/orderHistory": "/login"}><i className="material-icons">perm_identity</i></Link></li>
             <li><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></li>
             {auth && <li><Link to="/" onClick={logout}>LOGOUT</Link></li>}
             {auth && auth.isAdmin && <li><Link to="/adminusers">ADMIN: Users</Link></li>}

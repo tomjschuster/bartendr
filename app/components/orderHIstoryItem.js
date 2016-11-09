@@ -6,18 +6,80 @@ class OrderHistoryItem extends Component {
     super(props);
   }
 
+  total() {
+    var output = 0;
+    for (var i = 0; i < this.props.selectedOrder.order_items.length; i++) {
+      output += (this.props.selectedOrder.order_items[i].purchase_price * this.props.selectedOrder.order_items[i].quantity);
+    }
+    return output.toFixed(2);
+  }
+
   render() {
+    let { selectedOrder } = this.props;
+    let order_items = selectedOrder && selectedOrder.order_items;
     return(
-      <div>
-        <h1>Order History Item</h1>
-      </div>
-    );
+           <div>
+           {selectedOrder && (
+            <div>
+             <ul>
+               <li>{`Date: ${selectedOrder.created_at.slice(0, 10)}`}</li>
+                <li>{`status: ${selectedOrder.status}`}</li>
+             </ul>
+
+
+       <div>
+        <br />
+          <table className="responsive-table striped">
+           <thead>
+             <tr>
+                 <th data-field="id">Product</th>
+                 <th data-field="name">Name</th>
+                 <th data-field="name">Quantity</th>
+                 <th data-field="price">Price</th>
+                 <th data-field="remove-btn"></th>
+             </tr>
+           </thead>
+
+           <tbody>
+             {
+              order_items && order_items.map( item =>
+                (
+                 <tr key={item.product.id} >
+                   <td><img src={item.product.photoUrl} height="55" width="55"></img></td>
+                   <td>{item.product.name}</td>
+                   <td> {item.quantity}</td>
+                   <td>{(item.purchase_price * item.quantity).toFixed(2)}</td>
+                 </tr>
+                ))
+             }
+             <tr>
+              <td></td>
+              <td></td>
+              <td><strong>TOTAL</strong></td>
+              <td>
+                {
+                  this.total()
+                }
+              </td>
+              <td></td>
+             </tr>
+           </tbody>
+         </table>
+         </div>
+         </div>
+
+             )}
+           </div>
+
+
+
+     )
   }
 }
 
 
-const mapStateToProps = () => ({
-
+const mapStateToProps = ({selectedOrder}) => ({
+  selectedOrder
 });
 
 const mapDispatchToProps = () => ({
