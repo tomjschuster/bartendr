@@ -35,7 +35,7 @@ export class SingleOrder extends Component {
              <tr>
                  <th data-field="id">Product</th>
                  <th data-field="name">Name</th>
-                 <th data-field="name">Quantity</th>
+                 <th data-field="quantity">Quantity</th>
                  <th data-field="price">Price</th>
                  <th data-field="remove-btn"></th>
              </tr>
@@ -51,7 +51,7 @@ export class SingleOrder extends Component {
                    <td>
                      <input onChange={(e) => this.props.updateQuantity(e.target.value, item.product.id)} type="number" name="quantity" min="1" max={item.product.inventory} defaultValue={item.quantity} width="20%"/>
                    </td>
-                   <td>{(item.purchase_price * item.quantity).toFixed(2)}</td>
+                   <td id="itemprice">{(item.purchase_price * item.quantity).toFixed(2)}</td>
                    <td>
                     <a href="#" onClick={() => this.props.removeCartItem(item.product.id)}>
                       <i className="material-icons">delete_forever</i>
@@ -64,7 +64,7 @@ export class SingleOrder extends Component {
               <td></td>
               <td></td>
               <td><strong>TOTAL</strong></td>
-              <td>
+              <td id="totalprice">
                 {
                   this.total()
                 }
