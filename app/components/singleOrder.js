@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 
 //current sessions cart; not pulling data from model backend
 
-class SingleOrder extends Component {
+export class SingleOrder extends Component {
   constructor(props) {
     super(props);
   }

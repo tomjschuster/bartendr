@@ -42,3 +42,45 @@ router.get('/', (req, res, next) => {
   // console.log("req.session.counter", req.session.counter)
 
 })
+
+router.put('/:id', (req, res, next) => {
+  if(req.user.isAdmin) {
+
+    Product.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [Category, Review]
+    })
+      .then(product => {
+        console.log("product", product);
+        console.log("req.body", req.body);
+        return product.update(req.body);
+      })
+      .catch(next);
+    } else {
+      res.sendStatus(401);
+    }
+
+})
+
+router.delete('/:id', (req, res, next) => {
+  if(req.user.isAdmin) {
+
+    Product.destroy({
+      where: {
+        id: req.params.id
+      },
+      include: [Category, Review]
+    })
+    .then( (param) => {
+
+      console.log("param", param)
+      res.sendStatus(202);
+    })
+    .catch(next);
+  } else {
+    res.sendStatus(401);
+  }
+
+})
