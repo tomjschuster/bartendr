@@ -10,7 +10,7 @@ import { loadSingleOrder } from './reducers/selectedOrder';
 export const onAppEnter = () => {
   store.dispatch(loadAllProducts());
   store.dispatch(loadAllCategories());
-  const cart = localStorage.cart ? JSON.parse(localStorage.cart) : undefined;
+  const cart = localStorage.cart ? JSON.parse(localStorage.cart) : '{}';
   if (cart) {
     store.dispatch(receiveCart(cart));
   } else {
