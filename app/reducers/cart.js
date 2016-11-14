@@ -107,12 +107,10 @@ export default (state = initialState, action) => {
       // by default every time a product is added, its quantity is 1
       var cartItem ={ product: action.product, purchase_price: action.product.price, quantity: 1} ;
       var cart = [...state, cartItem];
-      localStorage.cart = JSON.stringify(cart);
       return cart;
     case RECEIVE_CART:
       return action.cart;
      case CLEAR_CART:
-      localStorage.cart = JSON.stringify(action.cart);
       return action.cart;
     default:
       return state;
